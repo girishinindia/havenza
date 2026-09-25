@@ -2,12 +2,12 @@
 
 import Image from 'next/image';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { CATEGORIES, COURSES, OCCASIONS, SERVICES } from '@/lib/data';
+import { CATEGORIES, COURSES, COURSE_TRACKS, OCCASIONS, SERVICES } from '@/lib/data';
 import Icon from '@/components/ui/Icon';
 import { useUI } from '@/components/ui/UIProvider';
 import MegaMenu, { type MegaSeg } from './MegaMenu';
 
-const SECTIONS = ['collections', 'business', 'bespoke', 'learn', 'occasions', 'why'];
+const SECTIONS = ['collections', 'business', 'bespoke', 'learn', 'services', 'occasions', 'why'];
 
 export default function Header() {
   const { drawer, openDrawer, prefillEnquiry, bagCount } = useUI();
@@ -104,7 +104,7 @@ export default function Header() {
             <ul className="hidden lg:flex items-center gap-4 xl:gap-7">
               <li>{trigger('b2c', 'For Home', 'B2C', 'collections')}</li>
               <li>{trigger('b2b', 'For Business', 'B2B', 'business')}</li>
-              <li>{trigger('learn', <><span className="hidden xl:inline">Courses &amp;</span>Services</>, null, ['bespoke', 'learn'])}</li>
+              <li>{trigger('learn', <><span className="hidden xl:inline">Courses &amp;</span>Services</>, null, ['bespoke', 'learn', 'services'])}</li>
               <li>{trigger('occ', 'Occasions', null, 'occasions')}</li>
             </ul>
             <div className="flex items-center gap-1 sm:gap-2" onPointerEnter={plainHover}>
@@ -156,11 +156,15 @@ export default function Header() {
                   <details className="m-acc">
                     <summary>Courses &amp; Services <Icon name="chevron-down" className="chev w-5 h-5 text-rose-600" /></summary>
                     <div className="pb-3 grid gap-0.5 font-sans">
-                      <p className="text-[10.5px] tracking-[.26em] uppercase text-cocoa-300 pt-3 pb-1">Courses · Havenza Studio</p>
-                      {COURSES.map((c) => (
-                        <button key={c.id} type="button" onClick={() => { setMobileOpen(false); prefillEnquiry(c.name, 'personal'); }} className="flex items-center gap-3 py-2 text-left text-[15px] text-cocoa-600">
-                          <Icon name={c.icon} className="w-4 h-4 text-rose-600 shrink-0" />{c.name}
-                        </button>
+                      {COURSE_TRACKS.map((t) => (
+                        <div key={t.key} className="grid gap-0.5">
+                          <p className="text-[10.5px] tracking-[.26em] uppercase text-cocoa-300 pt-3 pb-1">{t.label}</p>
+                          {COURSES.filter((c) => c.track === t.key).map((c) => (
+                            <button key={c.id} type="button" onClick={() => { setMobileOpen(false); prefillEnquiry(c.name, c.for.includes('b2c') ? 'personal' : 'business'); }} className="flex items-center gap-3 py-2 text-left text-[15px] text-cocoa-600">
+                              <Icon name={c.icon} className="w-4 h-4 text-rose-600 shrink-0" />{c.name}
+                            </button>
+                          ))}
+                        </div>
                       ))}
                       <p className="text-[10.5px] tracking-[.26em] uppercase text-cocoa-300 pt-3 pb-1">Services</p>
                       {SERVICES.map((x) => (
@@ -168,7 +172,7 @@ export default function Header() {
                           <Icon name={x.icon} className="w-4 h-4 text-rose-600 shrink-0" />{x.name}
                         </button>
                       ))}
-                      <a href="#learn" className="flex items-center gap-2 pt-3 text-[12px] tracking-[.18em] uppercase text-rose-700">All courses <Icon name="arrow-right" className="w-4 h-4" /></a>
+                      <div className="flex gap-6 pt-3"><a href="#learn" className="flex items-center gap-2 text-[12px] tracking-[.18em] uppercase text-rose-700">All courses <Icon name="arrow-right" className="w-4 h-4" /></a><a href="#services" className="flex items-center gap-2 text-[12px] tracking-[.18em] uppercase text-rose-700">All services <Icon name="arrow-right" className="w-4 h-4" /></a></div>
                     </div>
                   </details>
                 </li>

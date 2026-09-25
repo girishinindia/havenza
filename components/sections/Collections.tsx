@@ -2,6 +2,9 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { CATEGORIES, FILTERS, TOTAL, pad, type Segment } from '@/lib/data';
+
+const WORDS = ['Zero','One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten','Eleven','Twelve','Thirteen','Fourteen','Fifteen','Sixteen','Seventeen','Eighteen','Nineteen','Twenty'];
+const COUNT_WORD = WORDS[CATEGORIES.length] ?? String(CATEGORIES.length);
 import { d } from '@/lib/ui';
 import Icon from '@/components/ui/Icon';
 import CardGL from '@/components/gl/CardGL';
@@ -37,7 +40,7 @@ export default function Collections() {
         <div className="grid lg:grid-cols-12 gap-8 items-end">
           <div className="lg:col-span-7">
             <p className="eyebrow eyebrow-line eyebrow-left reveal">The Havenza collections</p>
-            <h2 className="reveal font-display text-[2.6rem] sm:text-5xl lg:text-[3.6rem] leading-[1.05] text-cocoa-800 mt-5" style={d(80)}>Fifteen collections. <span className="gold-text italic">One signature.</span></h2>
+            <h2 className="reveal font-display text-[2.6rem] sm:text-5xl lg:text-[3.6rem] leading-[1.05] text-cocoa-800 mt-5" style={d(80)}>{COUNT_WORD} collections. <span className="gold-text italic">One signature.</span></h2>
             <p className="reveal mt-5 text-cocoa-500 font-light text-[17px] max-w-xl leading-relaxed" style={d(140)}>Browse by world, search across every product and service, or open a collection to see its full retail and business range.</p>
           </div>
           <div className="lg:col-span-5 reveal" style={d(180)}>

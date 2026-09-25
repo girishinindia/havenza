@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { useRef } from 'react';
-import { TOTAL, TOTAL_B2B } from '@/lib/data';
+import { CATEGORIES, TOTAL, TOTAL_B2B } from '@/lib/data';
 import { d } from '@/lib/ui';
 import Icon from '@/components/ui/Icon';
 import { useUI, type FilterKey } from '@/components/ui/UIProvider';
@@ -46,7 +46,7 @@ export default function Hero() {
           <dl className="reveal mt-12 grid grid-cols-2 sm:grid-cols-4 gap-y-6 max-w-2xl" style={d(320)}>
             <div className="pr-4 sm:border-r border-rose-300/40">
               <dt className="text-[11px] tracking-[.22em] uppercase text-cocoa-400">Collections</dt>
-              <dd className="font-display text-4xl text-cocoa-800 mt-1"><span data-count={15}>15</span></dd>
+              <dd className="font-display text-4xl text-cocoa-800 mt-1"><span data-count={CATEGORIES.length}>{CATEGORIES.length}</span></dd>
             </div>
             <div className="sm:px-5 sm:border-r border-rose-300/40">
               <dt className="text-[11px] tracking-[.22em] uppercase text-cocoa-400">Products &amp; services</dt>

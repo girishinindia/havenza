@@ -1,5 +1,5 @@
 import {
-  ArrowLeft, ArrowRight, GraduationCap, Hammer, Laptop, RefreshCw, Smile, Users, Clock, BarChart3, ArrowUp, ArrowUpRight, Award, Baby, Briefcase, Building2, Check, ChevronDown, ChevronRight,
+  ArrowLeft, ArrowRight, Droplets, Box, PackageOpen, Camera, Printer, GraduationCap, Hammer, Laptop, RefreshCw, Smile, Users, Clock, BarChart3, ArrowUp, ArrowUpRight, Award, Baby, Briefcase, Building2, Check, ChevronDown, ChevronRight,
   Coffee, DraftingCompass, Flame, Flower, Flower2, Frame, Gem, Ghost, Gift, Hand, Heart, HeartHandshake, Hotel, House,
   Lamp, Layers, Mail, MapPin, Menu, MessageCircle, Package, Palette, PartyPopper, PenTool, Phone, Scissors, Search, Send,
   ShieldCheck, ShoppingBag, Sofa, Sparkles, Sprout, Star, Store, Sun, Tent, Trees, Truck, UtensilsCrossed, Wind, X,
@@ -16,7 +16,7 @@ const ICONS: Record<string, LucideIcon> = {
   menu: Menu, 'message-circle': MessageCircle, package: Package, palette: Palette, 'party-popper': PartyPopper,
   'pen-tool': PenTool, phone: Phone, scissors: Scissors, search: Search, send: Send, 'shield-check': ShieldCheck,
   'shopping-bag': ShoppingBag, sofa: Sofa, sparkles: Sparkles, sprout: Sprout, star: Star, store: Store, sun: Sun,
-  tent: Tent, trees: Trees, 'graduation-cap': GraduationCap, hammer: Hammer, laptop: Laptop, 'refresh-cw': RefreshCw, smile: Smile, users: Users, clock: Clock, 'bar-chart-3': BarChart3, truck: Truck, 'utensils-crossed': UtensilsCrossed, wind: Wind, x: X,
+  tent: Tent, trees: Trees, droplets: Droplets, box: Box, 'package-open': PackageOpen, camera: Camera, printer: Printer, 'graduation-cap': GraduationCap, hammer: Hammer, laptop: Laptop, 'refresh-cw': RefreshCw, smile: Smile, users: Users, clock: Clock, 'bar-chart-3': BarChart3, truck: Truck, 'utensils-crossed': UtensilsCrossed, wind: Wind, x: X,
 };
 
 export default function Icon({ name, className, strokeWidth = 1.5 }: { name: string; className?: string; strokeWidth?: number }) {

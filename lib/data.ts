@@ -2,7 +2,7 @@
    Edit collections, industries and occasions here; every section and menu reads from this file. */
 
 export type Segment = 'b2c' | 'b2b';
-export type GroupKey = 'home' | 'hospitality' | 'gifting' | 'custom';
+export type GroupKey = 'home' | 'hospitality' | 'gifting' | 'custom' | 'craft';
 
 export interface Category {
   id: number; title: string; short: string; icon: string; groups: GroupKey[];
@@ -22,13 +22,13 @@ export type Occasion = OccasionDef;
 export const CATEGORIES: Category[] = [
   { id: 1, title: 'Candles & Fragrance', short: 'Candles & Fragrance', icon: 'flame', groups: ['home','hospitality','gifting'],
     blurb: 'Hand-poured soy, beeswax and designer candles — from gift sets for the home to signature scents for hotels, spas and brands.',
-    b2c: ['Scented Candles','Soy Wax Candles','Beeswax Candles','Decorative Candles','Designer Candles','Flower Candles','Pillar Candles','Jar Candles','Floating Candles','Tea Light Candles','Aroma Candles','Personalized Candles','Festival & Seasonal Candles','Gift Candle Sets','Candle Holders'],
-    b2b: ['Hotel Room Candles','Restaurant & Café Candles','Spa & Salon Candles','Corporate Gift Candles','Wedding & Event Candles','Custom Branded Candles','Bulk Candle Supply','Private Label Candle Manufacturing','Hospitality Fragrance Collections'] },
+    b2c: ['Scented Candles','Soy Wax Candles','Beeswax Candles','Decorative Candles','Designer Candles','Flower Candles','Pillar Candles','Jar Candles','Floating Candles','Tea Light Candles','Aroma Candles','Personalized Candles','Festival & Seasonal Candles','Gift Candle Sets','Candle Holders','Gel Candles','Dessert Candles','Sculpted & Bubble Candles','Taper Candles','Votive Candles'],
+    b2b: ['Hotel Room Candles','Restaurant & Café Candles','Spa & Salon Candles','Corporate Gift Candles','Wedding & Event Candles','Custom Branded Candles','Bulk Candle Supply','Private Label Candle Manufacturing','Hospitality Fragrance Collections','Custom Mould Candles'] },
   { id: 2, title: 'Artificial Flowers & Floral Décor', short: 'Floral Décor', icon: 'flower-2', groups: ['home','hospitality','gifting'],
     blurb: 'Everlasting paper, crepe, fabric and foam florals — from bouquets and wreaths to lobby arrangements and stage installations.',
     b2c: ['Paper Flowers','Crepe Paper Flowers','Fabric Flowers','Foam Flowers','Artificial Flower Bouquets','Decorative Leaves','Floral Garlands','Flower Arrangements','Table Floral Décor','Wall Floral Décor','Wreaths','Mini Floral Décor','Seasonal Floral Collections'],
     b2b: ['Hotel Lobby Floral Décor','Reception Floral Arrangements','Restaurant & Café Floral Décor','Office Floral Décor','Wedding & Event Flowers','Retail Store Displays','Stage & Background Floral Décor','Custom Large Floral Installations','Corporate Floral Décor','Bulk Floral Supply'] },
-  { id: 3, title: 'Resin Art & Resin Décor', short: 'Resin Art', icon: 'gem', groups: ['home','gifting','custom'],
+  { id: 3, title: 'Resin Art & Resin Décor', short: 'Resin Art', icon: 'gem', groups: ['home','gifting','custom','craft'],
     blurb: 'Ocean and floral resin art, coasters, trays and clocks — plus logo-embedded awards, plaques and branded corporate pieces.',
     b2c: ['Resin Coasters','Resin Trays','Resin Art Panels','Resin Wall Art','Resin Photo Frames','Resin Clocks','Resin Bookmarks','Resin Keychains','Resin Jewellery','Resin Decorative Plates','Resin Bowls','Resin Showpieces','Personalized Resin Gifts','Ocean Resin Art','Floral Resin Art'],
     b2b: ['Hotel Table Accessories','Restaurant Table Décor','Office Décor','Reception Décor','Corporate Logo Resin Products','Customized Awards & Plaques','Corporate Gifts','Branded Resin Products','Interior Décor Panels','Bulk Customized Resin Products'] },
@@ -46,25 +46,25 @@ export const CATEGORIES: Category[] = [
     b2b: ['Hotel Table Décor','Restaurant Table Décor','Banquet Table Décor','Wedding Table Décor','Café Table Décor','Event Table Centerpieces','Customized Table Sets','Bulk Hospitality Supply'] },
   { id: 7, title: 'Vases, Pots & Planters', short: 'Vases & Planters', icon: 'sprout', groups: ['home','hospitality'],
     blurb: 'Handmade pots, resin vases and planter arrangements — from tabletop minis to statement lobby planters.',
-    b2c: ['Decorative Vases','Resin Vases','Ceramic-Style Décor','Handmade Pots','Decorative Planters','Mini Planters','Tabletop Planters','Wall Planters','Artificial Plant Arrangements'],
+    b2c: ['Decorative Vases','Resin Vases','Ceramic-Style Décor','Handmade Pots','Decorative Planters','Mini Planters','Tabletop Planters','Wall Planters','Artificial Plant Arrangements','Concrete & Jesmonite Planters'],
     b2b: ['Hotel Lobby Planters','Office Planters','Restaurant Planters','Retail Display Planters','Large Decorative Planters','Custom Planter Designs','Bulk Commercial Supply'] },
   { id: 8, title: 'Gift & Personalized Décor', short: 'Gifts & Personalised', icon: 'gift', groups: ['gifting','custom'],
     blurb: 'Name plates, photo gifts and curated décor sets — and corporate hampers, welcome kits and recognition gifts at scale.',
-    b2c: ['Personalized Gifts','Name Plates','Photo Gifts','Anniversary Gifts','Birthday Gifts','Wedding Gifts','Housewarming Gifts','Festival Gifts','Couple Gifts','Customized Décor Sets','Return Gifts'],
-    b2b: ['Corporate Gifts','Employee Gifts','Client Gifts','Dealer & Distributor Gifts','Festival Corporate Hampers','Welcome Kits','Employee Joining Kits','Award & Recognition Gifts','Branded Promotional Gifts','Bulk Customized Gifts'] },
+    b2c: ['Personalized Gifts','Name Plates','Photo Gifts','Anniversary Gifts','Birthday Gifts','Wedding Gifts','Housewarming Gifts','Festival Gifts','Couple Gifts','Customized Décor Sets','Return Gifts','Luxury Gift Boxes','Hamper Boxes'],
+    b2b: ['Corporate Gifts','Employee Gifts','Client Gifts','Dealer & Distributor Gifts','Festival Corporate Hampers','Welcome Kits','Employee Joining Kits','Award & Recognition Gifts','Branded Promotional Gifts','Bulk Customized Gifts','Custom Packaging & Hamper Design'] },
   { id: 9, title: 'Wedding & Event Décor', short: 'Wedding & Events', icon: 'heart-handshake', groups: ['gifting','hospitality'],
     blurb: 'Favours, candle and floral décor for every celebration — and stage, entrance and backdrop décor for planners and venues.',
     b2c: ['Wedding Favors','Table Décor','Candle Décor','Floral Décor','Personalized Wedding Décor','Return Gifts','Engagement Décor','Anniversary Décor','Baby Shower Décor','Birthday Décor'],
     b2b: ['Wedding Planners','Event Planners','Banquet Halls','Hotels','Resorts','Event Agencies','Stage Décor','Entrance Décor','Backdrop Décor','Centerpieces','Custom Event Installations'] },
   { id: 10, title: 'Seasonal & Festival Décor', short: 'Seasonal & Festival', icon: 'sparkles', groups: ['gifting','home','hospitality'],
     blurb: 'Diwali to Christmas, Navratri to Valentine’s — festive collections for homes, hotels, offices, malls and retail.',
-    b2c: ['Diwali Décor','Christmas Décor','New Year Décor','Navratri Décor','Holi Décor','Raksha Bandhan Décor',"Valentine's Décor",'Halloween Décor','Festive Candles','Seasonal Floral Décor'],
-    b2b: ['Hotel Festival Décor','Office Festival Décor','Restaurant Festival Décor','Mall Décor','Retail Store Décor','Corporate Festival Décor','Event Festival Installations'] },
+    b2c: ['Diwali Décor','Christmas Décor','New Year Décor','Navratri Décor','Holi Décor','Raksha Bandhan Décor',"Valentine's Décor",'Halloween Décor','Festive Candles','Seasonal Floral Décor','Diyas','Designer Diyas','Pooja Thali Sets','Torans','Rangoli Décor','Kalash Décor'],
+    b2b: ['Hotel Festival Décor','Office Festival Décor','Restaurant Festival Décor','Mall Décor','Retail Store Décor','Corporate Festival Décor','Event Festival Installations','Bulk Festive Diyas','Corporate Diwali Kits'] },
   { id: 11, title: 'Fragrance & Aroma Products', short: 'Fragrance & Aroma', icon: 'wind', groups: ['home','hospitality','custom'],
     blurb: 'Reed diffusers, wax melts and aroma décor — and signature room, lobby and spa scents under your own label.',
-    b2c: ['Home Fragrance','Aroma Wax','Fragrance Candles','Wax Melts','Reed Diffusers','Aroma Décor','Fragrance Gift Sets'],
-    b2b: ['Hotel Room Fragrance','Lobby Fragrance','Spa Fragrance','Restaurant Fragrance','Office Fragrance','Signature Hotel Fragrance','Private Label Fragrance Products'] },
-  { id: 12, title: 'Handmade Craft Décor', short: 'Handmade Craft', icon: 'scissors', groups: ['home','custom'],
+    b2c: ['Home Fragrance','Aroma Wax','Fragrance Candles','Wax Melts','Reed Diffusers','Aroma Décor','Fragrance Gift Sets','Wax Sachets','Scented Wax Tablets','Wardrobe & Car Fresheners'],
+    b2b: ['Hotel Room Fragrance','Lobby Fragrance','Spa Fragrance','Restaurant Fragrance','Office Fragrance','Signature Hotel Fragrance','Private Label Fragrance Products','Branded Wax Sachets'] },
+  { id: 12, title: 'Handmade Craft Décor', short: 'Handmade Craft', icon: 'scissors', groups: ['home','custom','craft'],
     blurb: 'Macramé, paper, fabric, rope, wood and upcycled mixed-media pieces — crafted by hand in small batches.',
     b2c: ['Handmade Decorative Objects','Paper Craft','Fabric Craft','Macramé Décor','Rope Décor','Wooden Décor','Mixed-Media Art','Upcycled Décor','Handmade Collectibles'],
     b2b: ['Custom Craft Projects','Interior Designer Supply','Hotel Craft Décor','Retail Display Décor','Corporate Craft Gifts','Bulk Handmade Products','Custom Theme Décor'] },
@@ -79,7 +79,19 @@ export const CATEGORIES: Category[] = [
   { id: 15, title: 'Décor Rental & Event Services', short: 'Décor Rental', icon: 'tent', groups: ['custom','hospitality'],
     blurb: 'Rent candle, floral, table and backdrop décor for weddings, corporate events, hotel functions and seasonal retail displays.',
     b2c: [],
-    b2b: ['Event Décor Rental','Wedding Décor Rental','Floral Installation Rental','Candle Décor Rental','Table Décor Rental','Backdrop Rental','Corporate Event Décor','Hotel Event Décor','Seasonal Display Rental','Retail/Mall Display Rental'] }
+    b2b: ['Event Décor Rental','Wedding Décor Rental','Floral Installation Rental','Candle Décor Rental','Table Décor Rental','Backdrop Rental','Corporate Event Décor','Hotel Event Décor','Seasonal Display Rental','Retail/Mall Display Rental'] },
+  { id: 16, title: 'Handmade Soap & Bath', short: 'Soap & Bath', icon: 'droplets', groups: ['home','hospitality','gifting','craft'],
+    blurb: 'Melt & pour, cold and hot process soaps — botanical bars and gift sets for the home, guest and spa soaps for hospitality.',
+    b2c: ['Handmade Soaps','Melt & Pour Soaps','Cold Process Soaps','Hot Process Soaps','Botanical & Herbal Soaps','Gift Soap Sets','Wedding Favour Soaps','Festive Soaps','Soap Dishes & Trays'],
+    b2b: ['Hotel Guest Soaps','Spa & Salon Soaps','Private Label Soaps','Corporate Gift Soaps','Wedding & Event Favour Soaps','Bulk Soap Supply'] },
+  { id: 17, title: 'Concrete & Jesmonite Décor', short: 'Concrete & Jesmonite', icon: 'box', groups: ['home','hospitality','custom','craft'],
+    blurb: 'Minimal cast vessels, planters and trays in concrete and Jesmonite — terrazzo, marbled and pastel finishes.',
+    b2c: ['Concrete Planters','Jesmonite Planters','Candle Vessels','Trays','Coasters','Bowls','Incense Holders','Bookends','Terrazzo Décor','Décor Objects'],
+    b2b: ['Hotel & Café Planters','Custom Logo Trays','Branded Candle Vessels','Retail Display Pieces','Bulk Concrete Décor','Interior Designer Custom Pieces'] },
+  { id: 18, title: 'Craft Supplies, Moulds & DIY Kits', short: 'Supplies & DIY Kits', icon: 'package-open', groups: ['craft','custom'],
+    blurb: 'Everything our students and makers use — DIY kits, silicone moulds, waxes, soap bases, resin and fragrance oils.',
+    b2c: ['Candle Making Kits','Soap Making Kits','Resin Art Kits','Concrete & Jesmonite Kits','Silicone Moulds','Candle Waxes','Soap Bases','Fragrance Oils','Pigments & Micas','Wicks & Tools'],
+    b2b: ['Bulk Raw Materials','Custom Silicone Moulds','3D-Printed Masters','Workshop Kits for Institutes','Wholesale for Makers'] },
 ];
 
 export const INDUSTRIES: Industry[] = [
@@ -90,7 +102,8 @@ export const INDUSTRIES: Industry[] = [
   { name: 'Weddings & Event Planners', short: 'Event Planners', icon: 'party-popper', items: ['Stage, entrance & backdrops','Centerpieces & favours','Candle & floral rentals','Custom event installations'], open: 9 },
   { name: 'Retail, Malls & Showrooms', short: 'Retail & Malls', icon: 'store', items: ['Store & showroom décor','Festival mall installations','Retail display planters','Seasonal display rental'], open: 10 },
   { name: 'Interior Designers', short: 'Interior Designers', icon: 'drafting-compass', items: ['Custom orders to spec','Large-scale wall installations','Custom planter designs','Exclusive collections'], open: 5 },
-  { name: 'Brands & Private Label', short: 'Private Label', icon: 'package', items: ['Private label candles','Private label fragrance','OEM & bulk manufacturing','Custom logo products'], open: 14 }
+  { name: 'Brands & Private Label', short: 'Private Label', icon: 'package', items: ['Private label candles','Private label fragrance','OEM & bulk manufacturing','Custom logo products'], open: 14 },
+  { name: 'Makers & Craft Brands', short: 'Makers & Brands', icon: 'palette', items: ['Craft supplies & DIY kits','Custom moulds & 3D masters','Private label soaps & candles','Product photography'], open: 18 }
 ];
 
 export const PROCESS: Step[] = [
@@ -176,7 +189,7 @@ const OCCASION_DEFS: OccasionDef[] = [
     home: [], biz: [[15,'Retail/Mall Display Rental'],[2,'Retail Store Displays'],[7,'Retail Display Planters'],[12,'Retail Display Décor'],[10,'Mall Décor']] }
 ];
 
-export const MATERIALS: string[] = ['Soy Wax','Beeswax','Crepe Paper','Ocean Resin','Macramé','Reed Diffusers','Botanical Art','Wax Melts','Fabric Florals','Floating Candles','3D Wall Art','Upcycled Décor','Signature Fragrance','Floral Resin'];
+export const MATERIALS: string[] = ['Soy Wax','Beeswax','Crepe Paper','Ocean Resin','Macramé','Reed Diffusers','Botanical Art','Wax Melts','Fabric Florals','Floating Candles','3D Wall Art','Upcycled Décor','Signature Fragrance','Floral Resin','Jesmonite','Cold Process Soap','Silicone Moulds','Gel Wax','Terrazzo'];
 
 
 export const catById = (id: number) => CATEGORIES.find((c) => c.id === id)!;
@@ -198,6 +211,7 @@ export const FILTERS: { key: 'all' | GroupKey; label: string }[] = [
   { key: 'hospitality', label: 'Hospitality & Corporate' },
   { key: 'gifting', label: 'Gifts & Celebrations' },
   { key: 'custom', label: 'Bespoke & Services' },
+  { key: 'craft', label: 'Craft & DIY' },
 ];
 
 // TODO: replace with real Havenza contact details
@@ -205,9 +219,11 @@ export const CONTACT = { email: 'hello@havenza.in', phone: '+91 00000 00000', te
 
 export const pad = (n: number) => String(n).padStart(2, '0');
 
+
 /* ================= Courses (Havenza Studio) & Services ================= */
 
 export type CourseFormat = 'studio' | 'online' | 'kids' | 'pro';
+export type CourseTrack = 'mega' | 'craft' | 'business' | 'workshop';
 
 export const COURSE_FORMATS: { key: CourseFormat; label: string; short: string; icon: string; line: string }[] = [
   { key: 'studio', label: 'Studio workshops', short: 'Studio', icon: 'hand', line: 'Hands-on, one-day & weekend classes' },
@@ -216,82 +232,132 @@ export const COURSE_FORMATS: { key: CourseFormat; label: string; short: string; 
   { key: 'pro', label: 'Business / pro training', short: 'Pro', icon: 'graduation-cap', line: 'Certificate courses & team workshops' },
 ];
 
+export const COURSE_TRACKS: { key: CourseTrack; label: string }[] = [
+  { key: 'mega', label: 'Mega courses · certificate' },
+  { key: 'craft', label: 'Craft & décor courses' },
+  { key: 'business', label: 'Business & skills' },
+  { key: 'workshop', label: 'Workshops' },
+];
+
+/** Who a course or service is for: public (B2C) and/or business (B2B). */
+export const AUDIENCE_LABEL: Record<Segment, string> = { b2c: 'For you', b2b: 'For business' };
+
 export interface Course {
-  id: string; name: string; short: string; icon: string; level: string; duration: string;
+  id: string; name: string; short: string; icon: string; track: CourseTrack; for: Segment[]; level: string; duration: string;
   formats: CourseFormat[]; blurb: string; modules: string[]; related: number; // related collection id
 }
 
 // TODO: confirm course names, durations and formats with the Havenza team
 export const COURSES: Course[] = [
-  { id: 'candle', name: 'Candle Making', short: 'Candle Making', icon: 'flame', level: 'Beginner → Advanced', duration: '1 day – 4 weeks', formats: ['studio', 'online', 'kids', 'pro'], related: 1,
-    blurb: 'Pour soy, beeswax and designer candles — from jars and pillars to floating and flower candles.',
-    modules: ['Soy & beeswax basics', 'Wick selection & testing', 'Fragrance loads & blending', 'Colour & layering', 'Container & jar candles', 'Pillar & mould candles', 'Flower & designer candles', 'Finishing & packaging'] },
-  { id: 'resin', name: 'Resin Art', short: 'Resin Art', icon: 'gem', level: 'Beginner → Advanced', duration: '1 day – 4 weeks', formats: ['studio', 'online', 'pro'], related: 3,
-    blurb: 'Coasters, trays, ocean art and floral preservation — with safe, professional resin technique.',
-    modules: ['Resin safety & tools', 'Mixing, pigments & bubbles', 'Coasters & trays', 'Ocean & wave art', 'Flower preservation', 'Resin jewellery & keychains', 'Clocks & wall panels', 'Sanding, polish & finish'] },
-  { id: 'paperflowers', name: 'Paper & Crepe Flowers', short: 'Paper Flowers', icon: 'flower-2', level: 'Beginner → Intermediate', duration: '1 day – 2 weeks', formats: ['studio', 'online', 'kids'], related: 2,
-    blurb: 'Everlasting paper, crepe and giant flowers for bouquets, walls and backdrops.',
-    modules: ['Paper & crepe essentials', 'Roses, peonies & lilies', 'Leaves & stems', 'Bouquets & arrangements', 'Giant backdrop flowers', 'Wall floral décor'] },
-  { id: 'floral', name: 'Floral Arrangement & Styling', short: 'Floral Styling', icon: 'flower', level: 'All levels', duration: '1 day – 3 weeks', formats: ['studio', 'online', 'pro'], related: 2,
-    blurb: 'Design table, wall and event arrangements with fabric, foam and artificial florals.',
-    modules: ['Colour & form', 'Table centrepieces', 'Wreaths & garlands', 'Reception & lobby arrangements', 'Wedding & stage florals', 'Care & display'] },
-  { id: 'aroma', name: 'Aroma & Home Fragrance', short: 'Aroma & Fragrance', icon: 'wind', level: 'Beginner → Intermediate', duration: '1 day – 2 weeks', formats: ['studio', 'online', 'pro'], related: 11,
+  /* ---- Mega courses ---- */
+  { id: 'candle', name: 'Wax Candle Making Mega Course', short: 'Wax Candle Mega', icon: 'flame', track: 'mega', for: ['b2c', 'b2b'], level: 'Beginner → Pro · Certificate', duration: '4 – 6 weeks', formats: ['studio', 'online', 'pro'], related: 1,
+    blurb: 'Everything in wax — soy, paraffin, beeswax and gel — from jars and pillars to sculpted, dessert and designer candles.',
+    modules: ['Soy, paraffin, beeswax & gel wax', 'Wick sizing & burn testing', 'Fragrance loads & blending', 'Colour, layering & effects', 'Container, pillar, votive & taper', 'Floating, flower & sculpted candles', 'Dessert & bubble candles', 'Troubleshooting defects', 'Finishing, labelling & packaging', 'Costing & pricing'] },
+  { id: 'mould', name: 'Mould Making for Candles Mega Course', short: 'Mould Making Mega', icon: 'layers', track: 'mega', for: ['b2c', 'b2b'], level: 'Intermediate → Pro · Certificate', duration: '3 – 5 weeks', formats: ['studio', 'online', 'pro'], related: 18,
+    blurb: 'Design and pour your own silicone moulds — the skill behind every signature candle, resin and concrete piece.',
+    modules: ['Silicone types & shore hardness', 'Making & preparing masters', 'One-part block moulds', 'Two-part & cut moulds', 'Brush-on & glove moulds', 'Release agents & degassing', 'Moulds for resin & concrete', 'Care, storage & repairs'] },
+  { id: 'soap', name: 'Soap Making Mega Course', short: 'Soap Making Mega', icon: 'droplets', track: 'mega', for: ['b2c', 'b2b'], level: 'Beginner → Pro · Certificate', duration: '4 – 6 weeks', formats: ['studio', 'online', 'pro'], related: 16,
+    blurb: 'Melt & pour, cold process and hot process soap — recipes, safety, design and curing for gifts or a soap brand.',
+    modules: ['Melt & pour soap', 'Cold process soap', 'Hot process soap', 'Lye safety & handling', 'Oils, butters & recipe calculation', 'Colours, swirls & embeds', 'Botanicals & fragrance', 'Curing, cutting & stamping', 'Packaging & labelling'] },
+  { id: 'resin', name: 'Resin Art Mega Course', short: 'Resin Art Mega', icon: 'gem', track: 'mega', for: ['b2c', 'b2b'], level: 'Beginner → Pro · Certificate', duration: '4 – 6 weeks', formats: ['studio', 'online', 'pro'], related: 3,
+    blurb: 'Coasters, trays, jewellery and resin décor — with safe, professional technique from first pour to finished piece.',
+    modules: ['Resin safety & tools', 'Mixing, pigments & bubbles', 'Coasters & trays', 'Resin jewellery & keychains', 'Ocean & wave art', 'Flower preservation', 'Clocks, panels & wall art', 'Large pours & décor pieces', 'Sanding, polish & finish'] },
+
+  /* ---- Craft & décor ---- */
+  { id: 'concrete', name: 'Concrete & Jesmonite Décor Course', short: 'Concrete & Jesmonite', icon: 'box', track: 'craft', for: ['b2c', 'b2b'], level: 'Beginner → Intermediate', duration: '1 – 3 weeks', formats: ['studio', 'online', 'pro'], related: 17,
+    blurb: 'Cast vessels, planters, trays and home décor in concrete and Jesmonite — terrazzo, marbled and pastel finishes.',
+    modules: ['Concrete vs Jesmonite', 'Moulds for casting', 'Mixing & pigments', 'Candle vessels & planters', 'Trays, coasters & bowls', 'Terrazzo & marbling', 'Demoulding & sanding', 'Sealing & waterproofing'] },
+  { id: 'sachet', name: 'Wax Sachet & Scented Décor Course', short: 'Wax Sachets', icon: 'flower', track: 'craft', for: ['b2c'], level: 'Beginner', duration: '1 day – 1 week', formats: ['studio', 'online', 'kids'], related: 11,
+    blurb: 'Botanical wax sachets and scented décor for wardrobes, cars and gifting.',
+    modules: ['Waxes for sachets', 'Dried flowers & botanicals', 'Scent strength & safety', 'Wardrobe & car sachets', 'Scented wax tablets', 'Gift packs & tags'] },
+  { id: 'aroma', name: 'Aroma & Home Fragrance', short: 'Aroma & Fragrance', icon: 'wind', track: 'craft', for: ['b2c', 'b2b'], level: 'Beginner → Intermediate', duration: '1 day – 2 weeks', formats: ['studio', 'online', 'pro'], related: 11,
     blurb: 'Blend signature scents and make reed diffusers, wax melts and aroma décor.',
     modules: ['Fragrance notes & families', 'Blending a signature scent', 'Reed diffusers', 'Wax melts & aroma wax', 'Room & linen sprays', 'Gift sets & labelling'] },
-  { id: 'macrame', name: 'Macramé & Rope Craft', short: 'Macramé', icon: 'scissors', level: 'Beginner → Intermediate', duration: '1 day – 2 weeks', formats: ['studio', 'online', 'kids'], related: 12,
+  { id: 'paperflowers', name: 'Paper & Crepe Flowers', short: 'Paper Flowers', icon: 'flower-2', track: 'craft', for: ['b2c'], level: 'Beginner → Intermediate', duration: '1 day – 2 weeks', formats: ['studio', 'online', 'kids'], related: 2,
+    blurb: 'Everlasting paper, crepe and giant flowers for bouquets, walls and backdrops.',
+    modules: ['Paper & crepe essentials', 'Roses, peonies & lilies', 'Leaves & stems', 'Bouquets & arrangements', 'Giant backdrop flowers', 'Wall floral décor'] },
+  { id: 'floral', name: 'Floral Arrangement & Styling', short: 'Floral Styling', icon: 'flower', track: 'craft', for: ['b2c', 'b2b'], level: 'All levels', duration: '1 day – 3 weeks', formats: ['studio', 'online', 'pro'], related: 2,
+    blurb: 'Design table, wall and event arrangements with fabric, foam and artificial florals.',
+    modules: ['Colour & form', 'Table centrepieces', 'Wreaths & garlands', 'Reception & lobby arrangements', 'Wedding & stage florals', 'Care & display'] },
+  { id: 'macrame', name: 'Macramé & Rope Craft', short: 'Macramé', icon: 'scissors', track: 'craft', for: ['b2c'], level: 'Beginner → Intermediate', duration: '1 day – 2 weeks', formats: ['studio', 'online', 'kids'], related: 12,
     blurb: 'Knot wall hangings, plant hangers and rope décor for calm, textured spaces.',
     modules: ['Core knots', 'Wall hangings', 'Plant hangers', 'Rope baskets & trays', 'Upcycled rope décor'] },
-  { id: 'wallart', name: 'Wall Art & Mixed Media', short: 'Wall Art', icon: 'frame', level: 'All levels', duration: '1 day – 3 weeks', formats: ['studio', 'online'], related: 5,
+  { id: 'wallart', name: 'Wall Art & Mixed Media', short: 'Wall Art', icon: 'frame', track: 'craft', for: ['b2c'], level: 'All levels', duration: '1 day – 3 weeks', formats: ['studio', 'online'], related: 5,
     blurb: 'Create texture, 3D, botanical and typography art for homes and commercial walls.',
     modules: ['Texture & 3D art', 'Botanical art', 'Abstract composition', 'Typography art', 'Floral & resin wall art', 'Framing & hanging'] },
-  { id: 'styling', name: 'Home Styling Essentials', short: 'Home Styling', icon: 'sofa', level: 'All levels', duration: '1 day – 2 weeks', formats: ['studio', 'online'], related: 13,
+  { id: 'festive', name: 'Diya, Pooja & Festive Craft Course', short: 'Diya & Pooja Craft', icon: 'sparkles', track: 'craft', for: ['b2c', 'b2b'], level: 'All levels', duration: '2 hours – 2 weeks', formats: ['studio', 'online', 'kids'], related: 10,
+    blurb: 'Diyas, pooja thalis, torans and festive décor — make it, gift it, or sell it before every festival.',
+    modules: ['Diya painting & decoration', 'Wax & gel diyas', 'Pooja thali decoration', 'Torans & door hangings', 'Rangoli & kalash décor', 'Rakhi making', 'Christmas wreaths', 'Festive gift packs'] },
+
+  /* ---- Business & skills ---- */
+  { id: 'business', name: 'Handmade Business & Online Selling Course', short: 'Handmade Business', icon: 'briefcase', track: 'business', for: ['b2c', 'b2b'], level: 'Certificate', duration: '4 – 8 weeks', formats: ['pro', 'online', 'studio'], related: 14,
+    blurb: 'Turn your craft into a business — branding, pricing, Instagram and marketplaces, through to bulk and B2B orders.',
+    modules: ['Product range planning', 'Branding & packaging', 'Costing & pricing', 'Instagram & social selling', 'Marketplaces (Amazon, Etsy, Meesho)', 'Own website & WhatsApp orders', 'GST & business basics', 'Bulk & B2B orders', 'Certificate & mentoring'] },
+  { id: 'photo', name: 'Product Photography for Handmade Products', short: 'Product Photography', icon: 'camera', track: 'business', for: ['b2c', 'b2b'], level: 'Beginner → Intermediate', duration: '1 day – 2 weeks', formats: ['studio', 'online', 'pro'], related: 14,
+    blurb: 'Scroll-stopping photos with a phone or camera — lighting, styling and editing for Instagram and marketplaces.',
+    modules: ['Phone & camera setup', 'Natural & studio lighting', 'Props, backdrops & styling', 'Flat lays & lifestyle shots', 'Marketplace-ready photos', 'Editing & consistency', 'Short videos & reels'] },
+  { id: 'print3d', name: '3D Design & Printing for Crafts Course', short: '3D Design & Printing', icon: 'printer', track: 'business', for: ['b2c', 'b2b'], level: 'Intermediate', duration: '3 – 5 weeks', formats: ['studio', 'online', 'pro'], related: 18,
+    blurb: 'Design and 3D-print masters for moulds — create your own unique candle, resin and concrete shapes.',
+    modules: ['3D design basics (CAD)', 'Designing masters for moulds', 'Slicing & printer settings', 'Printing & finishing masters', 'From print to silicone mould', 'Designing custom logo pieces'] },
+  { id: 'hampers', name: 'Gift Hamper & Luxury Packaging Course', short: 'Hampers & Packaging', icon: 'gift', track: 'business', for: ['b2c', 'b2b'], level: 'Beginner → Pro', duration: '1 day – 2 weeks', formats: ['studio', 'online', 'pro'], related: 8,
+    blurb: 'Curate, box and brand luxury hampers for festivals, weddings and corporate clients.',
+    modules: ['Hamper curation', 'Rigid & luxury boxes', 'Wrapping, ribbons & fillers', 'Branding & custom tags', 'Wedding & return gifts', 'Corporate hampers at scale', 'Costing & pricing'] },
+  { id: 'styling', name: 'Home Styling Essentials', short: 'Home Styling', icon: 'sofa', track: 'business', for: ['b2c'], level: 'All levels', duration: '1 day – 2 weeks', formats: ['studio', 'online'], related: 13,
     blurb: 'Style shelves, tables, mantels and pooja corners like a professional.',
     modules: ['Styling principles', 'Shelf & mantel styling', 'Table & dining styling', 'Pooja room décor', 'Balcony & small spaces', 'Festive home styling'] },
-  { id: 'festive', name: 'Festive Décor Workshops', short: 'Festive Décor', icon: 'sparkles', level: 'All levels', duration: '2 – 4 hours', formats: ['studio', 'online', 'kids'], related: 10,
-    blurb: 'Seasonal workshops before every festival — make it, take it home, celebrate.',
-    modules: ['Diwali diyas & candles', 'Navratri décor', 'Rakhi making', 'Christmas wreaths', 'New Year table décor', 'Festive gift hampers'] },
-  { id: 'hampers', name: 'Gift Hampers & Packaging', short: 'Gift Hampers', icon: 'gift', level: 'Beginner → Pro', duration: '1 day – 2 weeks', formats: ['studio', 'online', 'pro'], related: 8,
-    blurb: 'Curate, wrap and brand gift hampers for festivals, weddings and corporate clients.',
-    modules: ['Hamper curation', 'Wrapping & ribbons', 'Personalised tags', 'Wedding & return gifts', 'Corporate hampers at scale'] },
-  { id: 'kids', name: 'Kids Craft Club', short: 'Kids Craft Club', icon: 'smile', level: 'Ages 6 – 14', duration: '1 – 2 hours', formats: ['kids', 'studio', 'online'], related: 12,
+
+  /* ---- Workshops ---- */
+  { id: 'kids', name: 'Kids Craft Club', short: 'Kids Craft Club', icon: 'smile', track: 'workshop', for: ['b2c'], level: 'Ages 6 – 14', duration: '1 – 2 hours', formats: ['kids', 'studio', 'online'], related: 12,
     blurb: 'Playful, safe craft sessions and birthday craft parties for young makers.',
     modules: ['Mini candles', 'Paper craft & flowers', 'Clay & painting', 'Festival crafts', 'Birthday craft parties'] },
-  { id: 'business', name: 'Craft Business Program', short: 'Craft Business', icon: 'briefcase', level: 'Certificate', duration: '4 – 8 weeks', formats: ['pro', 'online', 'studio'], related: 14,
-    blurb: 'Turn your craft into a business — from product and pricing to selling online and B2B orders.',
-    modules: ['Product range planning', 'Costing & pricing', 'Branding & packaging', 'Photography & listings', 'Selling online & on social', 'Bulk & B2B orders', 'Private label basics', 'Certificate & mentoring'] },
-  { id: 'teams', name: 'Corporate Team Workshops', short: 'Team Workshops', icon: 'users', level: 'Groups of 10 – 200', duration: '2 – 4 hours', formats: ['pro', 'studio'], related: 8,
-    blurb: 'On-site or studio team-building sessions — candles, resin or florals, with branded take-aways.',
-    modules: ['Candle-making team session', 'Resin coaster workshop', 'Floral styling session', 'Festive décor workshop', 'Branded take-home kits'] },
+  { id: 'teams', name: 'Corporate Team Workshops', short: 'Team Workshops', icon: 'users', track: 'workshop', for: ['b2b'], level: 'Groups of 10 – 200', duration: '2 – 4 hours', formats: ['pro', 'studio'], related: 8,
+    blurb: 'On-site or studio team-building sessions — candles, soap, resin or florals, with branded take-aways.',
+    modules: ['Candle-making team session', 'Soap-making session', 'Resin coaster workshop', 'Floral styling session', 'Festive décor workshop', 'Branded take-home kits'] },
 ];
 
-export interface Service { id: string; name: string; short: string; icon: string; audience: string; blurb: string; includes: string[]; related: number[] }
+export interface Service { id: string; name: string; short: string; icon: string; for: Segment[]; audience: string; blurb: string; includes: string[]; related: number[] }
 
 export const SERVICES: Service[] = [
-  { id: 'bespoke', name: 'Custom & Bespoke Orders', short: 'Custom & Bespoke', icon: 'pen-tool', audience: 'Home & business', related: [14, 8],
+  { id: 'bespoke', name: 'Custom & Bespoke Orders', short: 'Custom & Bespoke', icon: 'pen-tool', for: ['b2c', 'b2b'], audience: 'Home & business', related: [14, 8],
     blurb: 'Your colours, sizes, names, photos and themes — one-off pieces or exclusive collections.',
     includes: ['Personalised designs', 'Custom colours & sizes', 'Names, initials & photos', 'Theme-based décor', 'Exclusive collections', 'Sampling before production'] },
-  { id: 'oem', name: 'Private Label & OEM', short: 'Private Label & OEM', icon: 'package', audience: 'Brands & retailers', related: [14, 1, 11],
-    blurb: 'Your brand on our craft — candles, fragrance, resin and décor made to your spec.',
-    includes: ['Private label candles', 'Private label fragrance', 'OEM manufacturing', 'Custom packaging & labels', 'Bulk production', 'Quality checks & batch testing'] },
-  { id: 'gifting', name: 'Corporate Gifting', short: 'Corporate Gifting', icon: 'gift', audience: 'Companies', related: [8, 3, 1],
+  { id: 'oem', name: 'Private Label & OEM', short: 'Private Label & OEM', icon: 'package', for: ['b2b'], audience: 'Brands & retailers', related: [14, 1, 16],
+    blurb: 'Your brand on our craft — candles, soaps, fragrance, resin and décor made to your spec.',
+    includes: ['Private label candles', 'Private label soaps', 'Private label fragrance', 'OEM manufacturing', 'Custom packaging & labels', 'Bulk production & batch testing'] },
+  { id: 'moulds', name: 'Custom Moulds & 3D Masters', short: 'Moulds & 3D Masters', icon: 'printer', for: ['b2c', 'b2b'], audience: 'Makers & brands', related: [18, 17, 1],
+    blurb: 'Signature shapes for your products — 3D-designed masters and production-ready silicone moulds.',
+    includes: ['3D design of your shape', '3D-printed masters', 'Silicone mould production', 'Logo & branded moulds', 'Moulds for candles, resin & concrete', 'Small & bulk quantities'] },
+  { id: 'gifting', name: 'Corporate Gifting', short: 'Corporate Gifting', icon: 'gift', for: ['b2b'], audience: 'Companies', related: [8, 3, 16],
     blurb: 'Branded gifts for clients, employees and dealers — curated, packed and delivered.',
     includes: ['Festival corporate hampers', 'Employee joining kits', 'Client & dealer gifts', 'Awards & recognition', 'Logo-branded products', 'Pan-India dispatch'] },
-  { id: 'styling', name: 'Interior Styling', short: 'Interior Styling', icon: 'sofa', audience: 'Homes & commercial', related: [13, 4, 5],
+  { id: 'packaging', name: 'Packaging & Hamper Design', short: 'Packaging & Hampers', icon: 'package-open', for: ['b2c', 'b2b'], audience: 'Gifting & brands', related: [8, 14],
+    blurb: 'Luxury boxes, hamper design and branded packaging that make every product feel premium.',
+    includes: ['Luxury & rigid gift boxes', 'Hamper curation & design', 'Branded labels & tags', 'Wedding & festive packaging', 'Eco-friendly options', 'Bulk packing & dispatch'] },
+  { id: 'photo', name: 'Product Photography & Catalogue Shoots', short: 'Product Photography', icon: 'camera', for: ['b2c', 'b2b'], audience: 'Makers & brands', related: [14],
+    blurb: 'Styled product photos and catalogues for websites, marketplaces and Instagram.',
+    includes: ['Styled product photos', 'White-background marketplace shots', 'Lifestyle & flat-lay images', 'Catalogue & lookbook shoots', 'Reels & short videos', 'Editing & retouching'] },
+  { id: 'styling', name: 'Interior Styling', short: 'Interior Styling', icon: 'sofa', for: ['b2c', 'b2b'], audience: 'Homes & commercial', related: [13, 4, 5],
     blurb: 'Room-by-room décor styling for homes, and reception, lobby and café styling for businesses.',
     includes: ['Home styling packages', 'Living, bedroom & dining', 'Pooja room décor', 'Reception & lobby styling', 'Café & restaurant styling', 'Showroom & retail styling'] },
-  { id: 'hospitality', name: 'Hospitality Supply', short: 'Hospitality Supply', icon: 'hotel', audience: 'Hotels, cafés & spas', related: [1, 11, 6],
-    blurb: 'Consistent, repeat supply of room candles, signature fragrance, table décor and florals.',
-    includes: ['Hotel room candles', 'Signature scent programme', 'Table & banquet décor', 'Lobby florals & planters', 'Scheduled replenishment', 'Bulk hospitality pricing'] },
-  { id: 'events', name: 'Wedding & Event Décor', short: 'Wedding & Events', icon: 'heart-handshake', audience: 'Couples, planners & venues', related: [9, 2, 6],
+  { id: 'hospitality', name: 'Hospitality Supply', short: 'Hospitality Supply', icon: 'hotel', for: ['b2b'], audience: 'Hotels, cafés & spas', related: [1, 16, 11],
+    blurb: 'Consistent, repeat supply of room candles, guest soaps, signature fragrance, table décor and florals.',
+    includes: ['Hotel room candles', 'Guest & spa soaps', 'Signature scent programme', 'Table & banquet décor', 'Lobby florals & planters', 'Scheduled replenishment'] },
+  { id: 'events', name: 'Wedding & Event Décor', short: 'Wedding & Events', icon: 'heart-handshake', for: ['b2c', 'b2b'], audience: 'Couples, planners & venues', related: [9, 2, 6],
     blurb: 'Favours, candles, florals, stage and entrance décor — designed, delivered and set up.',
     includes: ['Stage & backdrop décor', 'Entrance décor', 'Centerpieces & table décor', 'Favours & return gifts', 'Candle & floral décor', 'Custom installations'] },
-  { id: 'rental', name: 'Décor Rental', short: 'Décor Rental', icon: 'tent', audience: 'Events & retail', related: [15],
+  { id: 'rental', name: 'Décor Rental', short: 'Décor Rental', icon: 'tent', for: ['b2c', 'b2b'], audience: 'Events & retail', related: [15],
     blurb: 'Rent premium candle, floral, table and backdrop décor — no storage, no fuss.',
     includes: ['Event & wedding décor rental', 'Floral installation rental', 'Candle & table décor rental', 'Backdrop rental', 'Seasonal display rental', 'Delivery, setup & pickup'] },
-  { id: 'install', name: 'Installation & Setup', short: 'Installation', icon: 'hammer', audience: 'Projects & venues', related: [5, 2, 4],
+  { id: 'install', name: 'Installation & Setup', short: 'Installation', icon: 'hammer', for: ['b2b'], audience: 'Projects & venues', related: [5, 2, 4],
     blurb: 'Large wall art, floral installations and décor — installed and styled on site.',
     includes: ['Large-scale wall installations', 'Custom logo walls', 'Floral installations', 'Mall & retail displays', 'On-site styling', 'Interior designer projects'] },
-  { id: 'refresh', name: 'Seasonal Décor Refresh', short: 'Seasonal Refresh', icon: 'refresh-cw', audience: 'Offices, malls & hotels', related: [10, 2],
+  { id: 'refresh', name: 'Seasonal Décor Refresh', short: 'Seasonal Refresh', icon: 'refresh-cw', for: ['b2b'], audience: 'Offices, malls & hotels', related: [10, 2],
     blurb: 'Festive change-outs for Diwali, Christmas and more — planned, installed and removed.',
     includes: ['Festival décor calendar', 'Office festival décor', 'Hotel & restaurant festive décor', 'Mall & store installations', 'Install & removal', 'Annual refresh contracts'] },
+  { id: 'supplies', name: 'Bulk Craft Supplies', short: 'Craft Supplies', icon: 'truck', for: ['b2c', 'b2b'], audience: 'Makers, schools & brands', related: [18],
+    blurb: 'Waxes, soap bases, resin, moulds, fragrance oils and DIY kits — for students, makers and institutes.',
+    includes: ['DIY kits for every course', 'Silicone moulds', 'Waxes & soap bases', 'Resin & pigments', 'Fragrance oils', 'Wholesale & institute pricing'] },
+  { id: 'mentoring', name: 'Maker Business Mentoring', short: 'Business Mentoring', icon: 'graduation-cap', for: ['b2c'], audience: 'New makers & graduates', related: [14],
+    blurb: 'One-to-one help to launch your handmade brand — product, pricing, packaging and first sales.',
+    includes: ['Product range review', 'Pricing & costing check', 'Brand & packaging feedback', 'Instagram & marketplace setup', 'First bulk order guidance', 'Monthly check-ins'] },
 ];

@@ -1,6 +1,6 @@
 'use client';
 
-import { CATEGORIES, COURSES, COURSE_FORMATS, INDUSTRIES, OCCASIONS, SERVICES, TOTAL, TOTAL_B2B, catById, pad, type Segment } from '@/lib/data';
+import { AUDIENCE_LABEL, CATEGORIES, COURSES, COURSE_FORMATS, COURSE_TRACKS, INDUSTRIES, OCCASIONS, SERVICES, TOTAL, TOTAL_B2B, catById, pad, type Segment } from '@/lib/data';
 import Icon from '@/components/ui/Icon';
 import { useUI } from '@/components/ui/UIProvider';
 
@@ -11,6 +11,14 @@ const DarkCard = ({ children }: { children: React.ReactNode }) => (
     <div aria-hidden="true" className="absolute -right-20 -top-20 w-64 h-64 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(226,190,159,.35), transparent 65%)' }} />
     {children}
   </div>
+);
+
+const ForTags = ({ list }: { list: Segment[] }) => (
+  <span className="inline-flex gap-1.5 align-middle">
+    {list.map((x) => (
+      <span key={x} className={`text-[9.5px] tracking-[.16em] uppercase px-2 py-0.5 rounded-full ${x === 'b2c' ? 'bg-blush-100 text-rose-700' : 'bg-cocoa-800 text-rose-200'}`}>{AUDIENCE_LABEL[x]}</span>
+    ))}
+  </span>
 );
 
 const Row = ({ label, onClick }: { label: string; onClick: () => void }) => (
@@ -65,20 +73,34 @@ export default function MegaMenu({ seg, open, activeCat, activeOcc, activeLearn,
             <div className="mt-3 grid grid-cols-2 gap-x-1 gap-y-0.5" role="tablist">
               {isLearn ? (
                 <>
-                  <p className="mega-group">Courses · Havenza Studio</p>
-                  {COURSES.map((c) => (
-                    <button key={c.id} type="button" role="tab" aria-selected={activeLearn === `c:${c.id}`} className={`mega-cat ${activeLearn === `c:${c.id}` ? 'active' : ''}`}
-                      onPointerEnter={() => onHoverLearn(`c:${c.id}`)} onFocus={() => onHoverLearn(`c:${c.id}`)} onClick={() => enquire(c.name, c.formats[0] === 'pro' ? 'business' : 'personal')}>
-                      <span className="mi"><Icon name={c.icon} /></span><span className="min-w-0 truncate">{c.short}</span><Icon name="chevron-right" className="go" />
-                    </button>
-                  ))}
-                  <p className="mega-group">Services</p>
-                  {SERVICES.map((x) => (
-                    <button key={x.id} type="button" role="tab" aria-selected={activeLearn === `s:${x.id}`} className={`mega-cat ${activeLearn === `s:${x.id}` ? 'active' : ''}`}
-                      onPointerEnter={() => onHoverLearn(`s:${x.id}`)} onFocus={() => onHoverLearn(`s:${x.id}`)} onClick={() => openDrawer(x.related[0], 'b2b')}>
-                      <span className="mi"><Icon name={x.icon} /></span><span className="min-w-0 truncate">{x.short}</span><Icon name="chevron-right" className="go" />
-                    </button>
-                  ))}
+                  <div className="col-span-2 seg !flex w-full mb-2" role="tablist" aria-label="Courses or services">
+                    {([['c', `Courses · ${COURSES.length}`], ['s', `Services · ${SERVICES.length}`]] as const).map(([k, label]) => (
+                      <button key={k} type="button" role="tab" aria-selected={activeLearn.startsWith(k + ':')}
+                        className={`flex-1 ${activeLearn.startsWith(k + ':') ? 'active' : ''}`}
+                        onClick={() => onHoverLearn(k === 'c' ? `c:${COURSES[0].id}` : `s:${SERVICES[0].id}`)}>{label}</button>
+                    ))}
+                  </div>
+                  {activeLearn.startsWith('c:')
+                    ? COURSE_TRACKS.map((t) => (
+                        <FragmentWithHeading key={t.key} heading={t.label}>
+                          {COURSES.filter((c) => c.track === t.key).map((c) => (
+                            <button key={c.id} type="button" role="tab" aria-selected={activeLearn === `c:${c.id}`} className={`mega-cat ${activeLearn === `c:${c.id}` ? 'active' : ''}`}
+                              onPointerEnter={() => onHoverLearn(`c:${c.id}`)} onFocus={() => onHoverLearn(`c:${c.id}`)} onClick={() => enquire(c.name, c.for.includes('b2c') ? 'personal' : 'business')}>
+                              <span className="mi"><Icon name={c.icon} /></span><span className="min-w-0 truncate">{c.short}</span><Icon name="chevron-right" className="go" />
+                            </button>
+                          ))}
+                        </FragmentWithHeading>
+                      ))
+                    : (['b2c', 'b2b'] as const).map((segm) => (
+                        <FragmentWithHeading key={segm} heading={segm === 'b2c' ? 'For home & makers' : 'For business only'}>
+                          {SERVICES.filter((x) => (segm === 'b2c' ? x.for.includes('b2c') : !x.for.includes('b2c'))).map((x) => (
+                            <button key={x.id} type="button" role="tab" aria-selected={activeLearn === `s:${x.id}`} className={`mega-cat ${activeLearn === `s:${x.id}` ? 'active' : ''}`}
+                              onPointerEnter={() => onHoverLearn(`s:${x.id}`)} onFocus={() => onHoverLearn(`s:${x.id}`)} onClick={() => openDrawer(x.related[0], 'b2b')}>
+                              <span className="mi"><Icon name={x.icon} /></span><span className="min-w-0 truncate">{x.short}</span><Icon name="chevron-right" className="go" />
+                            </button>
+                          ))}
+                        </FragmentWithHeading>
+                      ))}
                 </>
               ) : isOcc
                 ? OCCASIONS.map((o, i) => (
@@ -107,11 +129,11 @@ export default function MegaMenu({ seg, open, activeCat, activeOcc, activeLearn,
               <>
                 <div className="relative flex items-start justify-between gap-6">
                   <div className="min-w-0">
-                    <p className="eyebrow">Course · {course.level}</p>
+                    <p className="eyebrow flex flex-wrap items-center gap-2">{course.track === 'mega' ? 'Mega course' : 'Course'} · {course.level} <ForTags list={course.for} /></p>
                     <h3 className="font-display text-[2rem] text-cocoa-800 leading-tight mt-1">{course.name}</h3>
                     <p className="text-[14.5px] text-cocoa-500 font-light mt-2 max-w-xl leading-relaxed">{course.blurb}</p>
                   </div>
-                  <button type="button" className="btn btn-primary !py-2.5 !px-4 !text-[11px] shrink-0" onClick={() => enquire(course.name, 'personal')}>
+                  <button type="button" className="btn btn-primary !py-2.5 !px-4 !text-[11px] shrink-0" onClick={() => enquire(course.name, course.for.includes('b2c') ? 'personal' : 'business')}>
                     Enrol <Icon name="arrow-right" className="w-3.5 h-3.5" />
                   </button>
                 </div>
@@ -134,7 +156,7 @@ export default function MegaMenu({ seg, open, activeCat, activeOcc, activeLearn,
               <>
                 <div className="relative flex items-start justify-between gap-6">
                   <div className="min-w-0">
-                    <p className="eyebrow">Service · {service.audience}</p>
+                    <p className="eyebrow flex flex-wrap items-center gap-2">Service · {service.audience} <ForTags list={service.for} /></p>
                     <h3 className="font-display text-[2rem] text-cocoa-800 leading-tight mt-1">{service.name}</h3>
                     <p className="text-[14.5px] text-cocoa-500 font-light mt-2 max-w-xl leading-relaxed">{service.blurb}</p>
                   </div>
@@ -228,9 +250,10 @@ export default function MegaMenu({ seg, open, activeCat, activeOcc, activeLearn,
                 <p className="relative text-[13.5px] text-pearl/90 font-light mt-2 leading-relaxed">Studio workshops, online courses, kids’ classes and certificate programmes — taught by our makers.</p>
                 <button type="button" onClick={() => goto('learn')} className="relative btn btn-gold !py-2.5 !px-4 !text-[11px] mt-5 self-start">Browse all courses <Icon name="arrow-right" className="w-3.5 h-3.5" /></button>
                 <div className="relative mt-auto pt-6 space-y-2 text-[13.5px]">
-                  <Row label="Craft business certificate" onClick={() => enquire('Craft Business Program', 'personal')} />
+                  <Row label="Mega courses with certificate" onClick={() => goto('learn')} />
+                  <Row label="Handmade business & selling" onClick={() => enquire('Handmade Business & Online Selling Course', 'personal')} />
                   <Row label="Book a team workshop" onClick={() => enquire('Corporate Team Workshops', 'business')} />
-                  <Row label="Private label & OEM" onClick={() => enquire('Custom & Bespoke Creations', 'business')} />
+                  <Row label="All services" onClick={() => goto('services')} />
                 </div>
               </DarkCard>
             )}
@@ -255,7 +278,7 @@ export default function MegaMenu({ seg, open, activeCat, activeOcc, activeLearn,
           {seg === 'b2c' && (
             <>
               <span className="text-[11px] tracking-[.24em] uppercase text-cocoa-400 mr-1">Popular</span>
-              {([[1, 'Scented Candles'], [8, 'Personalized Gifts'], [3, 'Resin Coasters'], [11, 'Reed Diffusers'], [5, 'Botanical Art'], [13, 'Pooja Room Décor'], [9, 'Wedding Favors']] as [number, string][]).map(([id, n]) => (
+              {([[1, 'Scented Candles'], [16, 'Handmade Soaps'], [8, 'Personalized Gifts'], [3, 'Resin Coasters'], [17, 'Concrete Planters'], [10, 'Designer Diyas'], [18, 'Candle Making Kits']] as [number, string][]).map(([id, n]) => (
                 <button key={n} type="button" className="mega-chip" onClick={() => openDrawer(id, 'b2c', n)}>{n}</button>
               ))}
               <button type="button" onClick={searchAll} className="ml-auto inline-flex items-center gap-2 text-[12px] tracking-[.18em] uppercase text-rose-700 hover:text-cocoa-800"><Icon name="search" className="w-4 h-4" />Search all {TOTAL}+ items</button>

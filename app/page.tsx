@@ -9,6 +9,8 @@ import Marquee from '@/components/sections/Marquee';
 import Business from '@/components/sections/Business';
 import Bespoke from '@/components/sections/Bespoke';
 import Courses from '@/components/sections/Courses';
+import Services from '@/components/sections/Services';
+import LearnAndPartner from '@/components/sections/LearnAndPartner';
 import Occasions from '@/components/sections/Occasions';
 import WhyHavenza from '@/components/sections/WhyHavenza';
 import Enquiry from '@/components/sections/Enquiry';
@@ -26,11 +28,13 @@ export default function HomePage() {
       <main id="home">
         <Hero />
         <TwoWorlds />
+        <LearnAndPartner />
         <Collections />
         <Marquee />
         <Business />
         <Bespoke />
         <Courses />
+        <Services />
         <Occasions />
         <WhyHavenza />
         <Enquiry />

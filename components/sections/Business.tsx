@@ -35,9 +35,9 @@ export default function Business() {
           </div>
         </div>
 
-        <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
+        <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
           {INDUSTRIES.map((x, i) => (
-            <article key={x.name} className="noir-card reveal p-6 lg:p-7 flex flex-col cursor-pointer group" style={d((i % 4) * 70)}
+            <article key={x.name} className="noir-card reveal p-6 lg:p-7 flex flex-col cursor-pointer group" style={d((i % 3) * 70)}
               role="button" tabIndex={0} onClick={() => openDrawer(x.open, 'b2b')}
               onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openDrawer(x.open, 'b2b'); } }}>
               <CardGL />
