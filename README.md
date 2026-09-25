@@ -8,7 +8,7 @@ Built with **Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS 3
 
 ## Run it locally
 
-Requires **Node.js 20.9 or newer** (`node -v` to check).
+Requires **Node.js 24** (the version pinned for Vercel in `package.json`) (`node -v` to check).
 
 ```bash
 npm install

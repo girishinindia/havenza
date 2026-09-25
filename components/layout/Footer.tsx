@@ -50,6 +50,7 @@ export default function Footer() {
               <ul className="mt-5 space-y-2.5 text-[14.5px]">
                 <li><a href="#why" className="hover:text-white transition">About Havenza</a></li>
                 <li><a href="#bespoke" className="hover:text-white transition">Bespoke &amp; OEM</a></li>
+                <li><a href="#learn" className="hover:text-white transition">Courses &amp; workshops</a></li>
                 <li><a href="#occasions" className="hover:text-white transition">Décor rental</a></li>
                 <li><a href="#enquire" className="hover:text-white transition">Request a catalogue</a></li>
                 <li><a href="#enquire" className="hover:text-white transition">Contact</a></li>

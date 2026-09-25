@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { CATEGORIES, CONTACT } from '@/lib/data';
+import { CATEGORIES, CONTACT, COURSES } from '@/lib/data';
 import Icon from '@/components/ui/Icon';
 import LuxCanvas from '@/components/gl/LuxCanvas';
 import { useUI, type EnquirySegment } from '@/components/ui/UIProvider';
@@ -88,12 +88,13 @@ export default function Enquiry() {
                   <div><label className={label} htmlFor="f-company">Company / property</label><input id="f-company" name="company" className="field mt-2" placeholder="Hotel, café, office, agency…" /></div>
                 ) : (
                   <div><label className={label} htmlFor="f-occasion">Occasion</label>
-                    <select id="f-occasion" name="occasion" className="field mt-2">{['Home styling', 'Gift', 'Wedding / event', 'Festival', 'Something custom'].map((o) => <option key={o}>{o}</option>)}</select></div>
+                    <select id="f-occasion" name="occasion" className="field mt-2">{['Home styling', 'Gift', 'Wedding / event', 'Festival', 'Course / workshop', 'Something custom'].map((o) => <option key={o}>{o}</option>)}</select></div>
                 )}
                 <div className={biz ? '' : 'sm:col-span-2'}><label className={label} htmlFor="f-cat">Collection of interest</label>
                   <select id="f-cat" name="collection" className="field mt-2" value={category} onChange={(e) => setCategory(e.target.value)}>
                     <option value="">Not sure yet</option>
-                    {CATEGORIES.map((c) => <option key={c.id} value={c.title}>{c.title}</option>)}
+                    <optgroup label="Collections">{CATEGORIES.map((c) => <option key={c.id} value={c.title}>{c.title}</option>)}</optgroup>
+                    <optgroup label="Courses & workshops">{COURSES.map((c) => <option key={c.id} value={c.name}>{c.name}</option>)}</optgroup>
                   </select>
                 </div>
                 {biz && (

@@ -2,15 +2,15 @@
 
 import Image from 'next/image';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { CATEGORIES, OCCASIONS } from '@/lib/data';
+import { CATEGORIES, COURSES, OCCASIONS, SERVICES } from '@/lib/data';
 import Icon from '@/components/ui/Icon';
 import { useUI } from '@/components/ui/UIProvider';
 import MegaMenu, { type MegaSeg } from './MegaMenu';
 
-const SECTIONS = ['collections', 'business', 'bespoke', 'occasions', 'why'];
+const SECTIONS = ['collections', 'business', 'bespoke', 'learn', 'occasions', 'why'];
 
 export default function Header() {
-  const { drawer, openDrawer, bagCount } = useUI();
+  const { drawer, openDrawer, prefillEnquiry, bagCount } = useUI();
   const headerRef = useRef<HTMLElement>(null);
 
   const [scrolled, setScrolled] = useState(false);
@@ -19,6 +19,7 @@ export default function Header() {
   const [mega, setMega] = useState<{ open: boolean; seg: MegaSeg }>({ open: false, seg: 'b2c' });
   const [activeCat, setActiveCat] = useState(1);
   const [activeOcc, setActiveOcc] = useState(OCCASIONS[0].id);
+  const [activeLearn, setActiveLearn] = useState(`c:${COURSES[0].id}`);
 
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const hoverTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -33,6 +34,7 @@ export default function Header() {
     if (!megaRef.current.open || megaRef.current.seg !== seg) {
       if (seg === 'b2c' || seg === 'b2b') setActiveCat(CATEGORIES[0].id);
       if (seg === 'occ') setActiveOcc(OCCASIONS[0].id);
+      if (seg === 'learn') setActiveLearn(`c:${COURSES[0].id}`);
     }
     if (!megaRef.current.open) openY.current = window.scrollY;
     setMega({ open: true, seg });
@@ -68,9 +70,9 @@ export default function Header() {
     return () => { document.removeEventListener('pointerdown', down); document.removeEventListener('keydown', key); };
   }, [closeMega]);
 
-  const trigger = (seg: MegaSeg, label: string, tag: string | null, section: string) => (
+  const trigger = (seg: MegaSeg, label: React.ReactNode, tag: string | null, section: string | string[]) => (
     <button type="button"
-      className={`nav-link mega-trigger ${active === section ? 'active' : ''}`}
+      className={`nav-link mega-trigger ${([] as string[]).concat(section).includes(active) ? 'active' : ''}`}
       aria-expanded={mega.open && mega.seg === seg} aria-controls="mega" aria-haspopup="true"
       onPointerEnter={(e) => { if (e.pointerType !== 'mouse') return; clear(); timer.current = setTimeout(() => openMega(seg), mega.open ? 0 : 110); }}
       onClick={() => (mega.open && mega.seg === seg ? closeMega() : openMega(seg))}
@@ -102,9 +104,8 @@ export default function Header() {
             <ul className="hidden lg:flex items-center gap-4 xl:gap-7">
               <li>{trigger('b2c', 'For Home', 'B2C', 'collections')}</li>
               <li>{trigger('b2b', 'For Business', 'B2B', 'business')}</li>
-              <li><a href="#bespoke" className={`nav-link ${active === 'bespoke' ? 'active' : ''}`} onPointerEnter={plainHover}>Bespoke</a></li>
+              <li>{trigger('learn', <><span className="hidden xl:inline">Courses &amp;</span>Services</>, null, ['bespoke', 'learn'])}</li>
               <li>{trigger('occ', 'Occasions', null, 'occasions')}</li>
-              <li className="hidden min-[1400px]:block"><a href="#why" className={`nav-link ${active === 'why' ? 'active' : ''}`} onPointerEnter={plainHover}>Why Havenza</a></li>
             </ul>
             <div className="flex items-center gap-1 sm:gap-2" onPointerEnter={plainHover}>
               <button type="button" onClick={focusSearch} className="w-11 h-11 grid place-items-center rounded-full text-cocoa-600 hover:bg-blush-50 transition" aria-label="Search products">
@@ -151,7 +152,26 @@ export default function Header() {
                   </details>
                 </li>
                 <li><a href="#collections" className="block py-2">All Collections</a></li>
-                <li><a href="#bespoke" className="block py-2">Bespoke &amp; Private Label</a></li>
+                <li>
+                  <details className="m-acc">
+                    <summary>Courses &amp; Services <Icon name="chevron-down" className="chev w-5 h-5 text-rose-600" /></summary>
+                    <div className="pb-3 grid gap-0.5 font-sans">
+                      <p className="text-[10.5px] tracking-[.26em] uppercase text-cocoa-300 pt-3 pb-1">Courses · Havenza Studio</p>
+                      {COURSES.map((c) => (
+                        <button key={c.id} type="button" onClick={() => { setMobileOpen(false); prefillEnquiry(c.name, 'personal'); }} className="flex items-center gap-3 py-2 text-left text-[15px] text-cocoa-600">
+                          <Icon name={c.icon} className="w-4 h-4 text-rose-600 shrink-0" />{c.name}
+                        </button>
+                      ))}
+                      <p className="text-[10.5px] tracking-[.26em] uppercase text-cocoa-300 pt-3 pb-1">Services</p>
+                      {SERVICES.map((x) => (
+                        <button key={x.id} type="button" onClick={() => openDrawer(x.related[0], 'b2b')} className="flex items-center gap-3 py-2 text-left text-[15px] text-cocoa-600">
+                          <Icon name={x.icon} className="w-4 h-4 text-rose-600 shrink-0" />{x.name}
+                        </button>
+                      ))}
+                      <a href="#learn" className="flex items-center gap-2 pt-3 text-[12px] tracking-[.18em] uppercase text-rose-700">All courses <Icon name="arrow-right" className="w-4 h-4" /></a>
+                    </div>
+                  </details>
+                </li>
                 <li>
                   <details className="m-acc">
                     <summary>Occasions <Icon name="chevron-down" className="chev w-5 h-5 text-rose-600" /></summary>
@@ -180,8 +200,9 @@ export default function Header() {
           )}
         </div>
 
-        <MegaMenu seg={mega.seg} open={mega.open} activeCat={activeCat} activeOcc={activeOcc}
-          onHoverCat={(id) => hoverDelay(() => setActiveCat(id))} onHoverOcc={(id) => hoverDelay(() => setActiveOcc(id))} onClose={closeMega} />
+        <MegaMenu seg={mega.seg} open={mega.open} activeCat={activeCat} activeOcc={activeOcc} activeLearn={activeLearn}
+          onHoverCat={(id) => hoverDelay(() => setActiveCat(id))} onHoverOcc={(id) => hoverDelay(() => setActiveOcc(id))}
+          onHoverLearn={(k) => hoverDelay(() => setActiveLearn(k))} onClose={closeMega} />
       </header>
       <div className={`mega-scrim ${mega.open ? 'show' : ''}`} aria-hidden="true" onClick={closeMega} />
     </>

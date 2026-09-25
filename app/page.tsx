@@ -8,6 +8,7 @@ import Collections from '@/components/sections/Collections';
 import Marquee from '@/components/sections/Marquee';
 import Business from '@/components/sections/Business';
 import Bespoke from '@/components/sections/Bespoke';
+import Courses from '@/components/sections/Courses';
 import Occasions from '@/components/sections/Occasions';
 import WhyHavenza from '@/components/sections/WhyHavenza';
 import Enquiry from '@/components/sections/Enquiry';
@@ -29,6 +30,7 @@ export default function HomePage() {
         <Marquee />
         <Business />
         <Bespoke />
+        <Courses />
         <Occasions />
         <WhyHavenza />
         <Enquiry />
