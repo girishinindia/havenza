@@ -187,7 +187,7 @@ html, body { overflow-x: clip; }
 .mega-cat:hover, .mega-cat.active { background: linear-gradient(90deg, rgba(246,227,220,.95), rgba(246,227,220,.25)); color: #2F1D14; }
 .mega-cat.active .go { opacity: 1; transform: none; }
 .mega-cat.active .cnt { display: none; }
-.mega-item { display: flex; align-items: center; gap: .6rem; width: 100%; text-align: left; padding: .45rem .6rem; border-radius: 10px; font-size: 14.5px; color: #553726; transition: background .25s, color .25s, padding .3s var(--ease); }
+.mega-item { display: flex; align-items: center; gap: .6rem; width: 100%; text-align: left; padding: .34rem .6rem; border-radius: 10px; font-size: 14px; line-height: 1.35; color: #553726; transition: background .25s, color .25s, padding .3s var(--ease); }
 .mega-item:hover { background: rgba(246,227,220,.65); color: #2F1D14; padding-left: .9rem; }
 .mega-item .sparkle { width: 7px; height: 7px; color: #D3A482; flex-shrink: 0; }
 .mega-chip { display: inline-flex; align-items: center; gap: .4rem; padding: .4rem .85rem; border-radius: 999px; font-size: 12.5px; color: #6E4E3D; background: #fff; box-shadow: 0 0 0 1px rgba(192,138,102,.25) inset; transition: all .25s; }
@@ -255,6 +255,7 @@ select.field { appearance: none; background-image: url("data:image/svg+xml,%3Csv
 .photo.fade-cream::after { background: linear-gradient(180deg, rgba(252,249,245,0) 45%, rgba(252,249,245,.95) 100%); }
 .photo.fade-cocoa::after { background: linear-gradient(180deg, rgba(47,29,20,0) 35%, rgba(47,29,20,.96) 100%); }
 .photo > .photo-over { position: absolute; z-index: 2; }
+.mega-banner::after { background: linear-gradient(180deg, rgba(34,21,14,0) 40%, rgba(34,21,14,.35) 100%); }
 /* photo bleeding to the card edge at the top of a padded card */
 .card-top { margin: -1.75rem -1.75rem 0; border-radius: 24px 24px 0 0; }
 @media (min-width: 1024px) { .card-top { margin: -2rem -2rem 0; } }

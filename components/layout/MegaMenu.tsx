@@ -9,7 +9,7 @@ import { useUI } from '@/components/ui/UIProvider';
 export type MegaSeg = 'b2c' | 'b2b' | 'learn' | 'occ';
 
 const DarkCard = ({ children }: { children: React.ReactNode }) => (
-  <div className="on-dark relative h-full rounded-[20px] overflow-hidden p-6 flex flex-col text-pearl" style={{ background: 'linear-gradient(160deg, #4A2E1F, #22150E)', boxShadow: '0 0 0 1px rgba(226,190,159,.25) inset, 0 24px 40px -24px rgba(34,21,14,.7)' }}>
+  <div className="on-dark relative rounded-[20px] overflow-hidden p-6 flex flex-col text-pearl" style={{ background: 'linear-gradient(160deg, #4A2E1F, #22150E)', boxShadow: '0 0 0 1px rgba(226,190,159,.25) inset, 0 24px 40px -24px rgba(34,21,14,.7)' }}>
     <div aria-hidden="true" className="absolute -right-20 -top-20 w-64 h-64 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(226,190,159,.35), transparent 65%)' }} />
     {children}
   </div>
@@ -21,6 +21,17 @@ const ForTags = ({ list }: { list: Segment[] }) => (
       <span key={x} className={`text-[9.5px] tracking-[.16em] uppercase px-2 py-0.5 rounded-full ${x === 'b2c' ? 'bg-blush-100 text-rose-700' : 'bg-cocoa-800 text-rose-200'}`}>{AUDIENCE_LABEL[x]}</span>
     ))}
   </span>
+);
+
+/** Wide photo banner across the middle column: badge bottom-left, action button bottom-right. */
+const Banner = ({ k, alt, badge, action }: { k: string; alt: string; badge: string; action: React.ReactNode }) => (
+  <div key={k} className="photo mega-banner relative h-[150px] rounded-[18px]"
+    style={{ animation: 'fadeUp .45s both', boxShadow: '0 0 0 1px rgba(192,138,102,.22), 0 18px 34px -22px rgba(67,42,29,.55)' }}>
+    <Photo k={k} alt={alt} />
+    <span className="photo-over left-4 bottom-4 max-w-[60%] truncate text-[10.5px] tracking-[.22em] uppercase text-cocoa-800 rounded-full px-3.5 py-2"
+      style={{ background: 'rgba(252,249,245,.88)', backdropFilter: 'blur(8px)' }}>{badge}</span>
+    <div className="photo-over right-4 bottom-4">{action}</div>
+  </div>
 );
 
 const Row = ({ label, onClick }: { label: string; onClick: () => void }) => (
@@ -124,58 +135,46 @@ export default function MegaMenu({ seg, open, activeCat, activeOcc, activeLearn,
             </div>
           </aside>
 
-          {/* Middle: items */}
-          {isLearn ? (
-          <section className="p-8 min-w-0 relative overflow-hidden">
-            {course && (
+          {/* Middle: wide photo banner + full-width content */}
+          <section className="p-7 min-w-0 relative">
+            {isLearn && course && (
               <>
-                <div className="relative flex items-start gap-5">
-                  <span key={COURSE_IMG(course.id)} className="photo shrink-0 w-[132px] h-[100px] rounded-2xl hidden xl:block" style={{ animation: 'fadeUp .45s both', boxShadow: '0 0 0 1px rgba(192,138,102,.25), 0 14px 26px -16px rgba(67,42,29,.5)' }}><Photo k={COURSE_IMG(course.id)} /></span>
-                  <div className="min-w-0 flex-1">
-                    <p className="eyebrow flex flex-wrap items-center gap-2">{course.track === 'mega' ? 'Mega course' : 'Course'} · {course.level} <ForTags list={course.for} /></p>
-                    <h3 className="font-display text-[2rem] text-cocoa-800 leading-tight mt-1">{course.name}</h3>
-                    <p className="text-[14.5px] text-cocoa-500 font-light mt-2 max-w-xl leading-relaxed">{course.blurb}</p>
-                  </div>
-                  <button type="button" className="btn btn-primary !py-2.5 !px-4 !text-[11px] shrink-0 ml-auto" onClick={() => enquire(course.name, course.for.includes('b2c') ? 'personal' : 'business')}>
-                    Enrol <Icon name="arrow-right" className="w-3.5 h-3.5" />
-                  </button>
-                </div>
+                <Banner k={COURSE_IMG(course.id)} alt={course.name} badge={course.track === 'mega' ? 'Mega course · Certificate' : COURSE_TRACKS.find((t) => t.key === course.track)?.label ?? 'Course'}
+                  action={<button type="button" className="btn btn-primary !py-2.5 !px-5 !text-[11px]" onClick={() => enquire(course.name, course.for.includes('b2c') ? 'personal' : 'business')}>Enrol <Icon name="arrow-right" className="w-3.5 h-3.5" /></button>} />
+                <h3 className="font-display text-[1.85rem] text-cocoa-800 leading-tight mt-5">{course.name}</h3>
+                <p className="text-[14.5px] text-cocoa-500 font-light mt-2 leading-relaxed">{course.blurb}</p>
                 <div className="mt-4 flex flex-wrap items-center gap-2">
-                  {COURSE_FORMATS.filter((f) => course.formats.includes(f.key)).map((f) => (
-                    <span key={f.key} className="chip"><Icon name={f.icon} className="w-3.5 h-3.5 text-rose-600" />{f.label}</span>
-                  ))}
+                  <span className="chip"><Icon name="graduation-cap" className="w-3.5 h-3.5 text-rose-600" />{course.level}</span>
                   <span className="chip"><Icon name="clock" className="w-3.5 h-3.5 text-rose-600" />{course.duration}</span>
+                  {COURSE_FORMATS.filter((f) => course.formats.includes(f.key)).map((f) => (
+                    <span key={f.key} className="chip"><Icon name={f.icon} className="w-3.5 h-3.5 text-rose-600" />{f.short}</span>
+                  ))}
+                  <ForTags list={course.for} />
                 </div>
                 <div className="hairline my-5" />
                 <p className="mega-sub"><Icon name="check" className="w-3.5 h-3.5" />What you’ll learn</p>
-                <ul key={course.id} className="relative grid grid-cols-2 gap-x-4 gap-y-0.5">
+                <ul key={course.id} className="relative grid grid-cols-2 gap-x-4">
                   {course.modules.map((m, i) => (
                     <li key={m}><button type="button" className="mega-item" style={{ animation: `fadeUp .4s ${i * 20}ms both` }} onClick={() => enquire(course.name, 'personal')}><span className="sparkle" />{m}</button></li>
                   ))}
                 </ul>
               </>
             )}
-            {service && (
+            {isLearn && service && (
               <>
-                <div className="relative flex items-start gap-5">
-                  <span key={SERVICE_IMG(service.id)} className="photo shrink-0 w-[132px] h-[100px] rounded-2xl hidden xl:block" style={{ animation: 'fadeUp .45s both', boxShadow: '0 0 0 1px rgba(192,138,102,.25), 0 14px 26px -16px rgba(67,42,29,.5)' }}><Photo k={SERVICE_IMG(service.id)} /></span>
-                  <div className="min-w-0 flex-1">
-                    <p className="eyebrow flex flex-wrap items-center gap-2">Service · {service.audience} <ForTags list={service.for} /></p>
-                    <h3 className="font-display text-[2rem] text-cocoa-800 leading-tight mt-1">{service.name}</h3>
-                    <p className="text-[14.5px] text-cocoa-500 font-light mt-2 max-w-xl leading-relaxed">{service.blurb}</p>
-                  </div>
-                  <button type="button" className="btn btn-primary !py-2.5 !px-4 !text-[11px] shrink-0 ml-auto" onClick={() => enquire(catById(service.related[0]).title, 'business')}>
-                    Enquire <Icon name="arrow-right" className="w-3.5 h-3.5" />
-                  </button>
-                </div>
+                <Banner k={SERVICE_IMG(service.id)} alt={service.name} badge={`Service · ${service.audience}`}
+                  action={<button type="button" className="btn btn-primary !py-2.5 !px-5 !text-[11px]" onClick={() => enquire(catById(service.related[0]).title, service.for.includes('b2b') ? 'business' : 'personal')}>Enquire <Icon name="arrow-right" className="w-3.5 h-3.5" /></button>} />
+                <h3 className="font-display text-[1.85rem] text-cocoa-800 leading-tight mt-5">{service.name}</h3>
+                <p className="text-[14.5px] text-cocoa-500 font-light mt-2 leading-relaxed">{service.blurb}</p>
+                <div className="mt-4 flex flex-wrap items-center gap-2"><ForTags list={service.for} /></div>
                 <div className="hairline my-5" />
                 <p className="mega-sub"><Icon name="check" className="w-3.5 h-3.5" />What’s included</p>
-                <ul key={service.id} className="relative grid grid-cols-2 gap-x-4 gap-y-0.5">
+                <ul key={service.id} className="relative grid grid-cols-2 gap-x-4">
                   {service.includes.map((m, i) => (
                     <li key={m}><button type="button" className="mega-item" style={{ animation: `fadeUp .4s ${i * 20}ms both` }} onClick={() => openDrawer(service.related[0], 'b2b')}><span className="sparkle" />{m}</button></li>
                   ))}
                 </ul>
-                <p className="mega-sub mt-5"><Icon name="layers" className="w-3.5 h-3.5" />Related collections</p>
+                <p className="mega-sub mt-4"><Icon name="layers" className="w-3.5 h-3.5" />Related collections</p>
                 <div className="flex flex-wrap gap-2 px-1">
                   {service.related.map((id) => (
                     <button key={id} type="button" className="mega-chip" onClick={() => openDrawer(id, 'b2b')}><Icon name={catById(id).icon} className="w-3.5 h-3.5" />{catById(id).short}</button>
@@ -183,42 +182,35 @@ export default function MegaMenu({ seg, open, activeCat, activeOcc, activeLearn,
                 </div>
               </>
             )}
-          </section>
-          ) : (
-          <section className="p-8 min-w-0 relative overflow-hidden">
-            <div className="relative flex items-start gap-5">
-              <span key={isOcc ? (OCCASION_IMG[occ.id] ?? COLLECTION_IMG[occ.open[0]]) : COLLECTION_IMG[cat.id]} className="photo shrink-0 w-[132px] h-[100px] rounded-2xl hidden xl:block" style={{ animation: 'fadeUp .45s both', boxShadow: '0 0 0 1px rgba(192,138,102,.25), 0 14px 26px -16px rgba(67,42,29,.5)' }}><Photo k={isOcc ? (OCCASION_IMG[occ.id] ?? COLLECTION_IMG[occ.open[0]]) : COLLECTION_IMG[cat.id]} /></span>
-                  <div className="min-w-0 flex-1">
-                <p className="eyebrow">{isOcc ? `${occ.group} · ${occ.home.length + occ.biz.length} ideas` : `${pad(cat.id)} · ${cat[catSeg].length} ${catSeg === 'b2c' ? 'for home' : 'for business'}`}</p>
-                <h3 className="font-display text-[2rem] text-cocoa-800 leading-tight mt-1">{isOcc ? occ.name : cat.title}</h3>
-                <p className="text-[14.5px] text-cocoa-500 font-light mt-2 max-w-xl leading-relaxed">{isOcc ? occ.blurb : cat.blurb}</p>
-              </div>
-              <button type="button" className="btn btn-ghost !py-2.5 !px-4 !text-[11px] shrink-0 ml-auto"
-                onClick={() => (isOcc ? openDrawer(occ.open[0], occ.open[1]) : openDrawer(cat.id, catSeg))}>
-                View all <Icon name="arrow-right" className="w-3.5 h-3.5" />
-              </button>
-            </div>
-            <div className="hairline my-5" />
-            <ul key={isOcc ? occ.id : `${seg}-${cat.id}`} className="relative grid grid-cols-2 gap-x-4 gap-y-0.5">
-              {isOcc ? (
-                <>
-                  {occ.home.length > 0 && (
-                    <li>
-                      <p className="mega-sub"><Icon name="sofa" className="w-3.5 h-3.5" />For home</p>
-                      <div className="grid gap-y-0.5">{occ.home.map(([id, n], i) => item(id, 'b2c', n, i, `h${i}`))}</div>
-                    </li>
+            {!isLearn && (
+              <>
+                <Banner k={isOcc ? (OCCASION_IMG[occ.id] ?? COLLECTION_IMG[occ.open[0]]) : COLLECTION_IMG[cat.id]} alt={isOcc ? occ.name : cat.title}
+                  badge={isOcc ? `${occ.group} · ${occ.home.length + occ.biz.length} ideas` : `${pad(cat.id)} · ${cat[catSeg].length} ${catSeg === 'b2c' ? 'for home' : 'for business'}`}
+                  action={<button type="button" className="btn btn-primary !py-2.5 !px-5 !text-[11px]" onClick={() => (isOcc ? openDrawer(occ.open[0], occ.open[1]) : openDrawer(cat.id, catSeg))}>View all <Icon name="arrow-right" className="w-3.5 h-3.5" /></button>} />
+                <h3 className="font-display text-[1.85rem] text-cocoa-800 leading-tight mt-5">{isOcc ? occ.name : cat.title}</h3>
+                <p className="text-[14.5px] text-cocoa-500 font-light mt-2 leading-relaxed">{isOcc ? occ.blurb : cat.blurb}</p>
+                <div className="hairline my-5" />
+                <ul key={isOcc ? occ.id : `${seg}-${cat.id}`} className="relative grid grid-cols-2 gap-x-4">
+                  {isOcc ? (
+                    <>
+                      {occ.home.length > 0 && (
+                        <li>
+                          <p className="mega-sub"><Icon name="sofa" className="w-3.5 h-3.5" />For home</p>
+                          <div className="grid">{occ.home.map(([id, n], i) => item(id, 'b2c', n, i, `h${i}`))}</div>
+                        </li>
+                      )}
+                      <li className={occ.home.length ? '' : 'col-span-2'}>
+                        <p className="mega-sub"><Icon name="building-2" className="w-3.5 h-3.5" />For business</p>
+                        <div className={`grid ${occ.home.length ? '' : 'grid-cols-2 gap-x-4'}`}>{occ.biz.map(([id, n], i) => item(id, 'b2b', n, i, `b${i}`))}</div>
+                      </li>
+                    </>
+                  ) : (
+                    cat[catSeg].map((n, i) => <li key={n}>{item(cat.id, catSeg, n, i, n)}</li>)
                   )}
-                  <li className={occ.home.length ? '' : 'col-span-2'}>
-                    <p className="mega-sub"><Icon name="building-2" className="w-3.5 h-3.5" />For business</p>
-                    <div className={`grid gap-y-0.5 ${occ.home.length ? '' : 'grid-cols-2 gap-x-4'}`}>{occ.biz.map(([id, n], i) => item(id, 'b2b', n, i, `b${i}`))}</div>
-                  </li>
-                </>
-              ) : (
-                cat[catSeg].map((n, i) => <li key={n}>{item(cat.id, catSeg, n, i, n)}</li>)
-              )}
-            </ul>
+                </ul>
+              </>
+            )}
           </section>
-          )}
 
           {/* Right: feature card */}
           <aside className="p-5 hidden xl:block">
@@ -228,7 +220,7 @@ export default function MegaMenu({ seg, open, activeCat, activeOcc, activeLearn,
                 <h4 className="relative font-display text-[1.7rem] leading-tight text-ivory mt-3">Gifts &amp; décor for <em className="gold-text-lt">every celebration</em></h4>
                 <p className="relative text-[13.5px] text-pearl/90 font-light mt-2 leading-relaxed">Diwali, Navratri, Christmas, weddings and birthdays — candles, florals and personalised pieces.</p>
                 <button type="button" onClick={() => openDrawer(10, 'b2c')} className="relative btn btn-gold !py-2.5 !px-4 !text-[11px] mt-5 self-start">Explore festive <Icon name="arrow-right" className="w-3.5 h-3.5" /></button>
-                <div className="relative mt-auto pt-6 space-y-2 text-[13.5px]">
+                <div className="relative mt-6 pt-5 border-t border-rose-300/15 space-y-2 text-[13.5px]">
                   <Row label="Personalised gifts" onClick={() => openDrawer(8, 'b2c')} />
                   <Row label="Home styling packages" onClick={() => openDrawer(13, 'b2c')} />
                   <Row label="Custom & bespoke" onClick={() => openDrawer(14, 'b2c')} />
@@ -241,7 +233,7 @@ export default function MegaMenu({ seg, open, activeCat, activeOcc, activeLearn,
                 <h4 className="relative font-display text-[1.7rem] leading-tight text-ivory mt-3">Private label, <em className="gold-text-lt">OEM &amp; bulk</em></h4>
                 <p className="relative text-[13.5px] text-pearl/90 font-light mt-2 leading-relaxed">Your logo, fragrance and packaging — sampled, approved and produced at the quantities you need.</p>
                 <button type="button" onClick={() => { onClose(); prefillEnquiry('', 'business'); }} className="relative btn btn-gold !py-2.5 !px-4 !text-[11px] mt-5 self-start">Get a trade quote <Icon name="arrow-right" className="w-3.5 h-3.5" /></button>
-                <div className="relative mt-auto pt-6 grid grid-cols-2 gap-3 text-center">
+                <div className="relative mt-6 pt-5 border-t border-rose-300/15 grid grid-cols-2 gap-3 text-center">
                   <div className="rounded-xl py-3" style={{ boxShadow: '0 0 0 1px rgba(226,190,159,.2) inset' }}><p className="font-display text-2xl text-ivory">{TOTAL_B2B}</p><p className="text-[10px] tracking-[.2em] uppercase text-rose-200">Solutions</p></div>
                   <div className="rounded-xl py-3" style={{ boxShadow: '0 0 0 1px rgba(226,190,159,.2) inset' }}><p className="font-display text-2xl text-ivory">{INDUSTRIES.length}</p><p className="text-[10px] tracking-[.2em] uppercase text-rose-200">Industries</p></div>
                 </div>
@@ -253,8 +245,8 @@ export default function MegaMenu({ seg, open, activeCat, activeOcc, activeLearn,
                 <p className="relative eyebrow !text-rose-300">Havenza Studio</p>
                 <h4 className="relative font-display text-[1.7rem] leading-tight text-ivory mt-3">Learn the craft, <em className="gold-text-lt">build a business</em></h4>
                 <p className="relative text-[13.5px] text-pearl/90 font-light mt-2 leading-relaxed">Studio workshops, online courses, kids’ classes and certificate programmes — taught by our makers.</p>
-                <button type="button" onClick={() => goto('learn')} className="relative btn btn-gold !py-2.5 !px-4 !text-[11px] mt-5 self-start">Browse all courses <Icon name="arrow-right" className="w-3.5 h-3.5" /></button>
-                <div className="relative mt-auto pt-6 space-y-2 text-[13.5px]">
+                <button type="button" onClick={() => goto('learn')} className="relative btn btn-gold !py-2.5 !px-4 !text-[11px] mt-5 self-start">All courses <Icon name="arrow-right" className="w-3.5 h-3.5" /></button>
+                <div className="relative mt-6 pt-5 border-t border-rose-300/15 space-y-2 text-[13.5px]">
                   <Row label="Mega courses with certificate" onClick={() => goto('learn')} />
                   <Row label="Handmade business & selling" onClick={() => enquire('Handmade Business & Online Selling Course', 'personal')} />
                   <Row label="Book a team workshop" onClick={() => enquire('Corporate Team Workshops', 'business')} />
@@ -268,7 +260,7 @@ export default function MegaMenu({ seg, open, activeCat, activeOcc, activeLearn,
                 <h4 className="relative font-display text-[1.7rem] leading-tight text-ivory mt-3">Rent the look, <em className="gold-text-lt">not the storage</em></h4>
                 <p className="relative text-[13.5px] text-pearl/90 font-light mt-2 leading-relaxed">Candle, floral, table and backdrop décor on rental — delivered, installed and collected.</p>
                 <button type="button" onClick={() => openDrawer(15, 'b2b')} className="relative btn btn-gold !py-2.5 !px-4 !text-[11px] mt-5 self-start">Explore rental <Icon name="arrow-right" className="w-3.5 h-3.5" /></button>
-                <div className="relative mt-auto pt-6 space-y-2 text-[13.5px]">
+                <div className="relative mt-6 pt-5 border-t border-rose-300/15 space-y-2 text-[13.5px]">
                   <Row label="Plan an event with us" onClick={() => { onClose(); prefillEnquiry('Wedding & Event Décor', 'business'); }} />
                   <Row label="Full festive collection" onClick={() => openDrawer(10, 'b2c')} />
                   <Row label="Wedding & event services" onClick={() => openDrawer(9, 'b2b')} />
