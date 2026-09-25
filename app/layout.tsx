@@ -18,7 +18,6 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Havenza — Create Your Beautiful Space',
     description: 'Home Décor · Hotel Décor · Office Décor · Gifts & More',
-    images: ['/images/havenza-icon.png'],
     type: 'website',
   },
 };

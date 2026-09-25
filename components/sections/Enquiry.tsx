@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { CATEGORIES, CONTACT, COURSES } from '@/lib/data';
+import Photo from '@/components/ui/Photo';
 import Icon from '@/components/ui/Icon';
 import LuxCanvas from '@/components/gl/LuxCanvas';
 import { useUI, type EnquirySegment } from '@/components/ui/UIProvider';
@@ -52,6 +53,7 @@ export default function Enquiry() {
           <div className="rounded-[31px] grid lg:grid-cols-12 overflow-hidden" style={{ background: 'linear-gradient(160deg, rgba(255,252,249,.94), rgba(250,238,231,.9))', boxShadow: '0 60px 120px -60px rgba(138,90,59,.5)' }}>
             {/* Left */}
             <div className="on-dark lg:col-span-5 relative p-8 sm:p-12 overflow-hidden" style={{ background: 'linear-gradient(165deg, #3B2418, #22150E)' }}>
+              <div className="noir-photo" aria-hidden="true"><Photo k="misc-enquiry" /></div>
               <LuxCanvas className="opacity-80" />
               <div className="relative">
                 <p className="eyebrow !text-rose-300">Enquiries &amp; quotations</p>

@@ -2,6 +2,7 @@
 
 import { PROCESS } from '@/lib/data';
 import { d } from '@/lib/ui';
+import Photo from '@/components/ui/Photo';
 import Icon from '@/components/ui/Icon';
 import CardGL from '@/components/gl/CardGL';
 import { useUI } from '@/components/ui/UIProvider';
@@ -25,7 +26,12 @@ export default function Bespoke() {
           </button>
         </div>
 
-        <ol className="lg:col-span-7 relative space-y-5">
+        <div className="lg:col-span-7 space-y-5">
+          <div className="photo reveal aspect-[16/8] rounded-[24px]" style={{ boxShadow: '0 0 0 1px rgba(192,138,102,.2), 0 30px 60px -34px rgba(67,42,29,.45)' }}>
+            <Photo k="misc-hands" alt="A maker's hands shaping a piece on the wheel" />
+            <span className="photo-over left-5 bottom-5 glass-pill rounded-2xl px-4 py-2.5 text-[12px] tracking-[.2em] uppercase text-cocoa-700">Handmade in small batches</span>
+          </div>
+          <ol className="relative space-y-5">
           <span className="hidden sm:block absolute left-[39px] top-10 bottom-10 w-px" style={{ background: 'linear-gradient(180deg, transparent, rgba(192,138,102,.5), transparent)' }} />
           {PROCESS.map((p, i) => (
             <li key={p.n} className="lux-card reveal p-7 sm:p-8 flex gap-6" style={d(i * 90)}>
@@ -41,7 +47,8 @@ export default function Bespoke() {
               </div>
             </li>
           ))}
-        </ol>
+          </ol>
+        </div>
       </div>
     </section>
   );

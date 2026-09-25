@@ -75,6 +75,14 @@ Add them in Vercel → Project → **Settings → Environment Variables**, then 
 
 ---
 
+## Photos
+
+- 76 photos from Unsplash (free licence), cropped, warm-graded to the Havenza palette and saved as **WebP** in `public/images/` (`collections/`, `courses/`, `services/`, `industries/`, `occasions/`, `site/`). About 5 MB in total; visitors only download what they scroll to.
+- Which photo goes where: `lib/images.ts`. Credits: `IMAGE_CREDITS.md`.
+- **To use your own photo:** save it as WebP with the same file name and a similar shape (the card crops it automatically).
+- Share preview (WhatsApp / social): `app/opengraph-image.jpg` — must stay JPG/PNG, as required by Next.js.
+- Image optimisation on Vercel is switched off (`images.unoptimized` in `next.config.ts`) because every photo is already sized and compressed.
+
 ## Before going live — checklist
 
 - [ ] **Contact details** — replace the placeholder email/phone in `lib/data.ts` (`CONTACT`).

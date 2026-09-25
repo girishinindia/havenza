@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import { AUDIENCE_LABEL, SERVICES, catById, type Segment } from '@/lib/data';
 import { d } from '@/lib/ui';
+import Photo from '@/components/ui/Photo';
+import { SERVICE_IMG } from '@/lib/images';
 import Icon from '@/components/ui/Icon';
 import CardGL from '@/components/gl/CardGL';
 import { useUI } from '@/components/ui/UIProvider';
@@ -34,13 +36,14 @@ export default function Services() {
           {list.map((s, i) => (
             <article key={`${aud}-${s.id}`} className="lux-card reveal group p-7 lg:p-8 flex flex-col" style={d((i % 3) * 70)}>
               <CardGL />
-              <div className="flex items-start justify-between gap-4">
+              <div className="photo card-top aspect-[16/9]"><Photo k={SERVICE_IMG(s.id)} alt={s.name} /></div>
+              <div className="flex items-end justify-between gap-4 badge-lift">
                 <span className="icon-badge"><Icon name={s.icon} /></span>
-                <div className="flex gap-1.5">
+                <div className="flex gap-1.5 pb-1">
                   {s.for.map((x) => <span key={x} className={`text-[9.5px] tracking-[.16em] uppercase px-2 py-1 rounded-full ${x === 'b2c' ? 'bg-blush-100 text-rose-700' : 'bg-cocoa-800 text-rose-200'}`}>{AUDIENCE_LABEL[x]}</span>)}
                 </div>
               </div>
-              <h3 className="font-display text-[1.7rem] leading-tight text-cocoa-800 mt-7">{s.name}</h3>
+              <h3 className="font-display text-[1.7rem] leading-tight text-cocoa-800 mt-5">{s.name}</h3>
               <p className="mt-1 text-[12px] tracking-[.16em] uppercase text-rose-600">{s.audience}</p>
               <p className="mt-3 text-[15px] text-cocoa-500 font-light leading-relaxed">{s.blurb}</p>
               <ul className="mt-5 grid grid-cols-2 gap-x-4 gap-y-1.5 text-[13.5px] text-cocoa-600">

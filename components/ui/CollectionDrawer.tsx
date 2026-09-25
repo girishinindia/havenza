@@ -1,8 +1,9 @@
 'use client';
 
-import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import { CATEGORIES, catById, pad, type Segment } from '@/lib/data';
+import Photo from './Photo';
+import { COLLECTION_IMG } from '@/lib/images';
 import Icon from './Icon';
 import { useUI } from './UIProvider';
 
@@ -48,12 +49,13 @@ export default function CollectionDrawer() {
         style={{ transition: 'opacity .5s cubic-bezier(.2,.7,.2,1)' }} onClick={closeDrawer} />
       <aside id="drawer" className={`fixed top-0 right-0 z-[60] h-full w-full max-w-[560px] translate-x-full flex flex-col ${drawer.open ? 'open' : ''}`}
         style={{ background: 'linear-gradient(170deg, #FFFCF9, #F7EAE1)' }} role="dialog" aria-modal="true" aria-labelledby="dTitle" aria-hidden={!drawer.open}>
+        <div className="photo fade-cream absolute top-0 left-0 right-0 h-56 sm:h-64 !bg-transparent pointer-events-none" aria-hidden="true">
+          <Photo k={COLLECTION_IMG[c.id]} key={c.id} />
+        </div>
         <div className="relative px-7 sm:px-10 pt-8 pb-6 overflow-hidden">
-          <Image src="/images/havenza-monogram.jpg" alt="" aria-hidden="true" width={1040} height={500}
-            className="feather absolute -right-28 -top-10 w-[380px] h-auto opacity-[.14] mix-blend-multiply pointer-events-none" />
-          <div className="relative flex items-start justify-between gap-4">
+          <div className="relative flex justify-between gap-4 h-32 sm:h-40 items-end">
             <span className="icon-badge"><Icon name={c.icon} /></span>
-            <button ref={closeRef} type="button" onClick={closeDrawer} className="w-11 h-11 rounded-full grid place-items-center glass-pill text-cocoa-700 hover:rotate-90 transition duration-500" aria-label="Close"><Icon name="x" className="w-5 h-5" /></button>
+            <button ref={closeRef} type="button" onClick={closeDrawer} className="self-start w-11 h-11 rounded-full grid place-items-center glass-pill text-cocoa-700 hover:rotate-90 transition duration-500" aria-label="Close"><Icon name="x" className="w-5 h-5" /></button>
           </div>
           <p className="relative eyebrow mt-6">Collection {pad(c.id)} of {CATEGORIES.length}</p>
           <h3 id="dTitle" className="relative font-display text-4xl text-cocoa-800 mt-2 leading-tight">{c.title}</h3>

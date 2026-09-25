@@ -71,7 +71,7 @@ export default function Hero() {
             <div className="absolute inset-[13%] orbit orbit-spin-rev" style={{ borderStyle: 'dashed', borderColor: 'rgba(192,138,102,.22)' }} />
             <div className="absolute inset-[18%] rounded-full" style={{ background: 'radial-gradient(circle, rgba(255,250,245,.95) 0%, rgba(255,246,238,.5) 45%, transparent 72%)' }} />
             <div ref={mono} className="absolute inset-0 grid place-items-center transition-transform duration-700 ease-out will-change-transform" style={{ transformStyle: 'preserve-3d' }}>
-              <Image src="/images/havenza-monogram.jpg" alt="Havenza H monogram in rose gold with blush leaves" width={1040} height={500} priority
+              <Image src="/images/havenza-monogram.webp" alt="Havenza H monogram in rose gold with blush leaves" width={1040} height={500} priority
                 sizes="(max-width: 1024px) 110vw, 760px" className="mono-mask w-[118%] max-w-none h-auto select-none" draggable={false} />
             </div>
             <Chip icon="hand" title="Handmade" sub="Made to order" className="left-0 sm:-left-2 top-[12%] float-a" />

@@ -1,8 +1,8 @@
 'use client';
 
-import Image from 'next/image';
 import { COURSES, SERVICES } from '@/lib/data';
 import { d } from '@/lib/ui';
+import Photo from '@/components/ui/Photo';
 import Icon from '@/components/ui/Icon';
 import CardGL from '@/components/gl/CardGL';
 import LuxCanvas from '@/components/gl/LuxCanvas';
@@ -35,13 +35,12 @@ export default function LearnAndPartner() {
           {/* Public / B2C */}
           <article className="lux-card reveal overflow-hidden p-8 sm:p-10 lg:p-12 flex flex-col" style={d(60)}>
             <CardGL />
-            <Image src="/images/havenza-monogram.jpg" alt="" aria-hidden="true" width={1040} height={500}
-              className="feather absolute -right-24 -bottom-16 w-[400px] h-auto opacity-[.16] mix-blend-multiply pointer-events-none !z-0" />
-            <div className="flex items-center gap-3">
+            <div className="photo card-top-lg aspect-[16/8]"><Photo k="learn-studio" alt="Hands making a candle in a teacup" /></div>
+            <div className="flex items-end gap-3 badge-lift">
               <span className="icon-badge"><Icon name="graduation-cap" /></span>
-              <span className="eyebrow">Havenza Studio · For you</span>
+              <span className="eyebrow pb-1.5">Havenza Studio · For you</span>
             </div>
-            <h3 className="font-display text-4xl sm:text-[2.6rem] leading-tight text-cocoa-800 mt-7">Learn the craft, <em className="text-rose-600">start your brand</em></h3>
+            <h3 className="font-display text-4xl sm:text-[2.6rem] leading-tight text-cocoa-800 mt-6">Learn the craft, <em className="text-rose-600">start your brand</em></h3>
             <p className="mt-4 text-cocoa-500 font-light leading-relaxed max-w-lg">
               Mega certificate courses in candles, moulds, soap and resin — plus concrete &amp; Jesmonite, festive crafts, product photography and online selling. In the studio, online or for kids.
             </p>
@@ -63,11 +62,12 @@ export default function LearnAndPartner() {
           <article className="on-dark reveal relative overflow-hidden rounded-[24px] p-8 sm:p-10 lg:p-12 flex flex-col text-pearl"
             style={{ ...d(140), background: 'linear-gradient(150deg, #4A2E1F 0%, #2F1D14 55%, #22150E 100%)', boxShadow: '0 0 0 1px rgba(226,190,159,.22) inset, 0 40px 80px -40px rgba(34,21,14,.8)' }}>
             <LuxCanvas className="opacity-70" />
-            <div className="relative flex items-center gap-3">
+            <div className="photo fade-cocoa card-top-lg aspect-[16/8] !bg-transparent"><Photo k="learn-business" alt="Packing handmade products for dispatch" /></div>
+            <div className="relative flex items-end gap-3 badge-lift">
               <span className="icon-badge" style={{ background: 'linear-gradient(145deg,#5A3A28,#2F1D14)', color: '#E9C4A4', boxShadow: '0 0 0 1px rgba(226,190,159,.35), 0 10px 20px -10px #000' }}><Icon name="briefcase" /></span>
-              <span className="eyebrow !text-rose-300">Training &amp; services · For business</span>
+              <span className="eyebrow !text-rose-300 pb-1.5">Training &amp; services · For business</span>
             </div>
-            <h3 className="relative font-display text-4xl sm:text-[2.6rem] leading-tight text-ivory mt-7">Your partner from <em className="gold-text-lt">mould to market</em></h3>
+            <h3 className="relative font-display text-4xl sm:text-[2.6rem] leading-tight text-ivory mt-6">Your partner from <em className="gold-text-lt">mould to market</em></h3>
             <p className="relative mt-4 text-pearl/90 font-light leading-relaxed max-w-lg">
               Private label and OEM, custom moulds and 3D masters, corporate gifting, packaging, photography, installation and rental — plus team workshops and pro training for your staff.
             </p>

@@ -98,7 +98,7 @@ export default function Header() {
         <div className="nav-shell max-w-site mx-auto rounded-[28px]">
           <nav className="px-4 sm:px-6 xl:px-8 h-[72px] flex items-center justify-between gap-4 xl:gap-6" aria-label="Primary">
             <a href="#home" className="flex items-center shrink-0" aria-label="Havenza home" onPointerEnter={plainHover}>
-              <Image src="/images/havenza-logo-horizontal.png" alt="Havenza — Create Your Beautiful Space" width={625} height={202} priority
+              <Image src="/images/havenza-logo-horizontal.webp" alt="Havenza — Create Your Beautiful Space" width={625} height={202} priority
                 className="logo-img h-[54px] xl:h-[64px] w-auto" />
             </a>
             <ul className="hidden lg:flex items-center gap-4 xl:gap-7">

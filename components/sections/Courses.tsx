@@ -3,6 +3,8 @@
 import { useEffect, useState } from 'react';
 import { AUDIENCE_LABEL, COURSES, COURSE_FORMATS, type CourseFormat } from '@/lib/data';
 import { d } from '@/lib/ui';
+import Photo from '@/components/ui/Photo';
+import { COURSE_IMG } from '@/lib/images';
 import Icon from '@/components/ui/Icon';
 import CardGL from '@/components/gl/CardGL';
 import { useUI } from '@/components/ui/UIProvider';
@@ -54,14 +56,15 @@ export default function Courses() {
           {list.map((c, i) => (
             <article key={`${format}-${c.id}`} className="lux-card reveal group p-7 lg:p-8 flex flex-col" style={d((i % 3) * 70)}>
               <CardGL />
-              <div className="flex items-start justify-between gap-4">
-                <span className="icon-badge"><Icon name={c.icon} /></span>
-                <div className="flex flex-col items-end gap-1.5">
-                  {c.track === 'mega' && <span className="text-[10px] tracking-[.22em] uppercase text-ivory rounded-full px-3 py-1.5" style={{ background: 'linear-gradient(135deg,#553726,#2F1D14)' }}>Mega course</span>}
-                  <span className="text-[10.5px] tracking-[.16em] uppercase text-rose-700 bg-blush-100 rounded-full px-3 py-1.5 text-right">{c.level}</span>
-                </div>
+              <div className="photo card-top aspect-[3/2]">
+                <Photo k={COURSE_IMG(c.id)} alt={c.name} />
+                {c.track === 'mega' && <span className="photo-over top-4 left-4 text-[10px] tracking-[.22em] uppercase text-ivory rounded-full px-3 py-1.5" style={{ background: 'linear-gradient(135deg,rgba(85,55,38,.92),rgba(47,29,20,.92))' }}>Mega course</span>}
               </div>
-              <h3 className="font-display text-[1.75rem] leading-tight text-cocoa-800 mt-7">{c.name}</h3>
+              <div className="flex items-end justify-between gap-4 badge-lift">
+                <span className="icon-badge"><Icon name={c.icon} /></span>
+                <span className="text-[10.5px] tracking-[.16em] uppercase text-rose-700 bg-blush-100 rounded-full px-3 py-1.5 text-right">{c.level}</span>
+              </div>
+              <h3 className="font-display text-[1.75rem] leading-tight text-cocoa-800 mt-5">{c.name}</h3>
               <div className="mt-2 flex gap-1.5">
                 {c.for.map((x) => <span key={x} className={`text-[9.5px] tracking-[.16em] uppercase px-2 py-0.5 rounded-full ${x === 'b2c' ? 'bg-blush-100 text-rose-700' : 'bg-cocoa-800 text-rose-200'}`}>{AUDIENCE_LABEL[x]}</span>)}
               </div>

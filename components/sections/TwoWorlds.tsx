@@ -1,8 +1,8 @@
 'use client';
 
-import Image from 'next/image';
 import { CATEGORIES, TOTAL_B2B, TOTAL_B2C } from '@/lib/data';
 import { d } from '@/lib/ui';
+import Photo from '@/components/ui/Photo';
 import Icon from '@/components/ui/Icon';
 import CardGL from '@/components/gl/CardGL';
 import LuxCanvas from '@/components/gl/LuxCanvas';
@@ -30,13 +30,12 @@ export default function TwoWorlds() {
           {/* B2C */}
           <article className="lux-card reveal overflow-hidden p-8 sm:p-10 lg:p-12 flex flex-col" style={d(60)}>
             <CardGL />
-            <Image src="/images/havenza-monogram.jpg" alt="" aria-hidden="true" width={1040} height={500}
-              className="feather absolute -right-24 -bottom-16 w-[420px] h-auto opacity-[.18] mix-blend-multiply pointer-events-none !z-0" />
-            <div className="flex items-center gap-3">
+            <div className="photo card-top-lg aspect-[16/8]"><Photo k="worlds-home" alt="Cosy living room styled with candles" /></div>
+            <div className="flex items-end gap-3 badge-lift">
               <span className="icon-badge"><Icon name="sofa" /></span>
-              <span className="eyebrow">For your home · B2C</span>
+              <span className="eyebrow pb-1.5">For your home · B2C</span>
             </div>
-            <h3 className="font-display text-4xl sm:text-[2.8rem] leading-tight text-cocoa-800 mt-7">Personal pieces, <em className="text-rose-600">thoughtfully</em> made</h3>
+            <h3 className="font-display text-4xl sm:text-[2.8rem] leading-tight text-cocoa-800 mt-6">Personal pieces, <em className="text-rose-600">thoughtfully</em> made</h3>
             <p className="mt-4 text-cocoa-500 font-light leading-relaxed max-w-lg">Scented and soy candles, everlasting florals, resin keepsakes, wall art and personalised gifts — for everyday rituals, festivals and the moments worth marking.</p>
             <ul className="mt-8 grid grid-cols-2 gap-x-6 gap-y-3 text-[15px] text-cocoa-600 max-w-md">
               <Check>Home styling packages</Check><Check>Personalised gifts</Check><Check>Festive collections</Check><Check>Pooja room décor</Check>
@@ -51,11 +50,12 @@ export default function TwoWorlds() {
           <article className="on-dark reveal relative overflow-hidden rounded-[24px] p-8 sm:p-10 lg:p-12 flex flex-col text-pearl"
             style={{ ...d(140), background: 'linear-gradient(150deg, #4A2E1F 0%, #2F1D14 55%, #22150E 100%)', boxShadow: '0 0 0 1px rgba(226,190,159,.22) inset, 0 40px 80px -40px rgba(34,21,14,.8)' }}>
             <LuxCanvas className="opacity-70" />
-            <div className="relative flex items-center gap-3">
+            <div className="photo fade-cocoa card-top-lg aspect-[16/8] !bg-transparent"><Photo k="worlds-business" alt="Warm, grand hotel lobby" /></div>
+            <div className="relative flex items-end gap-3 badge-lift">
               <span className="icon-badge" style={{ background: 'linear-gradient(145deg,#5A3A28,#2F1D14)', color: '#E9C4A4', boxShadow: '0 0 0 1px rgba(226,190,159,.35), 0 10px 20px -10px #000' }}><Icon name="building-2" /></span>
-              <span className="eyebrow !text-rose-300">For your business · B2B</span>
+              <span className="eyebrow !text-rose-300 pb-1.5">For your business · B2B</span>
             </div>
-            <h3 className="relative font-display text-4xl sm:text-[2.8rem] leading-tight text-ivory mt-7">Décor programmes, <em className="gold-text-lt">delivered at scale</em></h3>
+            <h3 className="relative font-display text-4xl sm:text-[2.8rem] leading-tight text-ivory mt-6">Décor programmes, <em className="gold-text-lt">delivered at scale</em></h3>
             <p className="relative mt-4 text-pearl/90 font-light leading-relaxed max-w-lg">Room candles and signature fragrance, lobby florals, branded resin, wall installations, corporate gifting and event décor — specified, sampled and supplied for hospitality, retail and corporate teams.</p>
             <ul className="relative mt-8 grid grid-cols-2 gap-x-6 gap-y-3 text-[15px] text-pearl max-w-md">
               <Check dark>Private label &amp; OEM</Check><Check dark>Bulk supply</Check><Check dark>Custom logo products</Check><Check dark>Installation &amp; rental</Check>

@@ -25,7 +25,7 @@ export default function Footer() {
       <div className="relative max-w-site mx-auto px-5 lg:px-10 pt-20 pb-10">
         <div className="grid lg:grid-cols-12 gap-12">
           <div className="lg:col-span-4">
-            <Image src="/images/havenza-logo-dark.jpg" alt="Havenza" width={659} height={255} className="feather w-[300px] h-auto -ml-6 -mt-6" />
+            <Image src="/images/havenza-logo-dark.webp" alt="Havenza" width={659} height={255} className="feather w-[300px] h-auto -ml-6 -mt-6" />
             <p className="mt-2 font-light leading-relaxed max-w-sm">Home Décor · Handmade Art · Hospitality Décor · Corporate Gifts · Custom Manufacturing.</p>
             <form className="mt-7 flex max-w-sm rounded-full p-1" style={{ ...ring, background: 'rgba(255,255,255,.04)' }}
               onSubmit={(e) => { e.preventDefault(); e.currentTarget.reset(); showToast('Welcome to Havenza — you’re on the list.'); }}>

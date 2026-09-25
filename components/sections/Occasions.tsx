@@ -3,6 +3,8 @@
 import { useRef } from 'react';
 import { CATEGORIES, FESTIVALS } from '@/lib/data';
 import { d } from '@/lib/ui';
+import Photo from '@/components/ui/Photo';
+import { FESTIVAL_IMG } from '@/lib/images';
 import Icon from '@/components/ui/Icon';
 import CardGL from '@/components/gl/CardGL';
 import LuxCanvas from '@/components/gl/LuxCanvas';
@@ -34,10 +36,9 @@ export default function Occasions() {
           {FESTIVALS.map((f) => (
             <article key={f.n} className="fest-card lux-card shrink-0 w-[250px] sm:w-[270px] overflow-hidden !rounded-[26px] cursor-pointer group" onClick={() => openDrawer(10, 'b2c')}>
               <CardGL />
-              <div className="relative h-[190px] overflow-hidden rounded-t-[26px]" style={{ background: `radial-gradient(120% 90% at 30% 20%, ${f.g[0]}, ${f.g[1]})` }}>
-                <div className="absolute inset-0 opacity-40" style={{ background: 'repeating-linear-gradient(115deg, rgba(255,255,255,.35) 0 2px, transparent 2px 22px)' }} />
-                <div className="absolute -right-10 -bottom-10 w-44 h-44 rounded-full" style={{ background: 'radial-gradient(circle, rgba(255,255,255,.55), transparent 65%)' }} />
-                <span className="absolute left-6 bottom-6 w-16 h-16 rounded-2xl grid place-items-center text-cocoa-700 glass-pill group-hover:scale-110 transition duration-500"><Icon name={f.icon} className="w-7 h-7" /></span>
+              <div className="photo relative h-[190px] rounded-t-[26px]">
+                <Photo k={FESTIVAL_IMG[f.n]} alt={`${f.n} décor`} />
+                <span className="photo-over left-5 bottom-5 w-14 h-14 rounded-2xl grid place-items-center text-cocoa-700 glass-pill group-hover:scale-110 transition duration-500"><Icon name={f.icon} className="w-6 h-6" /></span>
               </div>
               <div className="p-6">
                 <h3 className="font-display text-[1.7rem] text-cocoa-800">{f.n}</h3>
@@ -50,7 +51,8 @@ export default function Occasions() {
         <div className="mt-8 grid lg:grid-cols-2 gap-6 lg:gap-8">
           <article className="lux-card reveal p-8 sm:p-10">
             <CardGL />
-            <div className="flex items-center gap-3"><span className="icon-badge"><Icon name="heart-handshake" /></span><span className="eyebrow">Weddings &amp; events</span></div>
+            <div className="photo card-top-md aspect-[16/8]"><Photo k="evt-wedding-table" alt="Wedding table décor with candles and dried florals" /></div>
+            <div className="flex items-end gap-3 badge-lift"><span className="icon-badge"><Icon name="heart-handshake" /></span><span className="eyebrow pb-1.5">Weddings &amp; events</span></div>
             <h3 className="font-display text-3xl sm:text-4xl text-cocoa-800 mt-6">From intimate favours to grand stages</h3>
             <p className="mt-3 text-cocoa-500 font-light leading-relaxed">Wedding favours, candle and floral décor, personalised pieces and return gifts — plus stage, entrance, backdrop and centerpiece décor for planners, banquet halls, hotels and resorts.</p>
             <div className="mt-6 flex flex-wrap gap-2">{EVENT_CHIPS.map((c) => <span key={c} className="chip">{c}</span>)}</div>
@@ -59,6 +61,7 @@ export default function Occasions() {
 
           <article className="on-dark reveal relative overflow-hidden rounded-[24px] p-8 sm:p-10 text-pearl"
             style={{ ...d(100), background: 'linear-gradient(150deg, #4A2E1F, #2A1911 60%, #1E120C)', boxShadow: '0 0 0 1px rgba(226,190,159,.22) inset, 0 40px 80px -40px rgba(34,21,14,.75)' }}>
+            <div className="noir-photo" aria-hidden="true"><Photo k="evt-stage" /></div>
             <LuxCanvas className="opacity-60" />
             <div className="relative flex items-center gap-3">
               <span className="icon-badge" style={{ background: 'linear-gradient(145deg,#5A3A28,#2F1D14)', color: '#E9C4A4', boxShadow: '0 0 0 1px rgba(226,190,159,.35)' }}><Icon name="tent" /></span>

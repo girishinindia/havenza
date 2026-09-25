@@ -2,6 +2,8 @@
 
 import { INDUSTRIES, TOTAL_B2B } from '@/lib/data';
 import { d } from '@/lib/ui';
+import Photo from '@/components/ui/Photo';
+import { INDUSTRY_IMG } from '@/lib/images';
 import Icon from '@/components/ui/Icon';
 import CardGL from '@/components/gl/CardGL';
 import LuxCanvas from '@/components/gl/LuxCanvas';
@@ -40,6 +42,7 @@ export default function Business() {
             <article key={x.name} className="noir-card reveal p-6 lg:p-7 flex flex-col cursor-pointer group" style={d((i % 3) * 70)}
               role="button" tabIndex={0} onClick={() => openDrawer(x.open, 'b2b')}
               onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openDrawer(x.open, 'b2b'); } }}>
+              <div className="noir-photo" aria-hidden="true"><Photo k={INDUSTRY_IMG[x.name]} /></div>
               <CardGL />
               <div className="flex items-center justify-between">
                 <span className="w-12 h-12 rounded-2xl grid place-items-center text-rose-200" style={{ background: 'linear-gradient(145deg, rgba(226,190,159,.18), rgba(226,190,159,.04))', boxShadow: '0 0 0 1px rgba(226,190,159,.25) inset' }}>

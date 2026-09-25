@@ -1,6 +1,8 @@
 'use client';
 
 import { AUDIENCE_LABEL, CATEGORIES, COURSES, COURSE_FORMATS, COURSE_TRACKS, INDUSTRIES, OCCASIONS, SERVICES, TOTAL, TOTAL_B2B, catById, pad, type Segment } from '@/lib/data';
+import Photo from '@/components/ui/Photo';
+import { COLLECTION_IMG, COURSE_IMG, OCCASION_IMG, SERVICE_IMG } from '@/lib/images';
 import Icon from '@/components/ui/Icon';
 import { useUI } from '@/components/ui/UIProvider';
 
@@ -127,13 +129,14 @@ export default function MegaMenu({ seg, open, activeCat, activeOcc, activeLearn,
           <section className="p-8 min-w-0 relative overflow-hidden">
             {course && (
               <>
-                <div className="relative flex items-start justify-between gap-6">
-                  <div className="min-w-0">
+                <div className="relative flex items-start gap-5">
+                  <span key={COURSE_IMG(course.id)} className="photo shrink-0 w-[132px] h-[100px] rounded-2xl hidden xl:block" style={{ animation: 'fadeUp .45s both', boxShadow: '0 0 0 1px rgba(192,138,102,.25), 0 14px 26px -16px rgba(67,42,29,.5)' }}><Photo k={COURSE_IMG(course.id)} /></span>
+                  <div className="min-w-0 flex-1">
                     <p className="eyebrow flex flex-wrap items-center gap-2">{course.track === 'mega' ? 'Mega course' : 'Course'} · {course.level} <ForTags list={course.for} /></p>
                     <h3 className="font-display text-[2rem] text-cocoa-800 leading-tight mt-1">{course.name}</h3>
                     <p className="text-[14.5px] text-cocoa-500 font-light mt-2 max-w-xl leading-relaxed">{course.blurb}</p>
                   </div>
-                  <button type="button" className="btn btn-primary !py-2.5 !px-4 !text-[11px] shrink-0" onClick={() => enquire(course.name, course.for.includes('b2c') ? 'personal' : 'business')}>
+                  <button type="button" className="btn btn-primary !py-2.5 !px-4 !text-[11px] shrink-0 ml-auto" onClick={() => enquire(course.name, course.for.includes('b2c') ? 'personal' : 'business')}>
                     Enrol <Icon name="arrow-right" className="w-3.5 h-3.5" />
                   </button>
                 </div>
@@ -154,13 +157,14 @@ export default function MegaMenu({ seg, open, activeCat, activeOcc, activeLearn,
             )}
             {service && (
               <>
-                <div className="relative flex items-start justify-between gap-6">
-                  <div className="min-w-0">
+                <div className="relative flex items-start gap-5">
+                  <span key={SERVICE_IMG(service.id)} className="photo shrink-0 w-[132px] h-[100px] rounded-2xl hidden xl:block" style={{ animation: 'fadeUp .45s both', boxShadow: '0 0 0 1px rgba(192,138,102,.25), 0 14px 26px -16px rgba(67,42,29,.5)' }}><Photo k={SERVICE_IMG(service.id)} /></span>
+                  <div className="min-w-0 flex-1">
                     <p className="eyebrow flex flex-wrap items-center gap-2">Service · {service.audience} <ForTags list={service.for} /></p>
                     <h3 className="font-display text-[2rem] text-cocoa-800 leading-tight mt-1">{service.name}</h3>
                     <p className="text-[14.5px] text-cocoa-500 font-light mt-2 max-w-xl leading-relaxed">{service.blurb}</p>
                   </div>
-                  <button type="button" className="btn btn-primary !py-2.5 !px-4 !text-[11px] shrink-0" onClick={() => enquire(catById(service.related[0]).title, 'business')}>
+                  <button type="button" className="btn btn-primary !py-2.5 !px-4 !text-[11px] shrink-0 ml-auto" onClick={() => enquire(catById(service.related[0]).title, 'business')}>
                     Enquire <Icon name="arrow-right" className="w-3.5 h-3.5" />
                   </button>
                 </div>
@@ -182,13 +186,14 @@ export default function MegaMenu({ seg, open, activeCat, activeOcc, activeLearn,
           </section>
           ) : (
           <section className="p-8 min-w-0 relative overflow-hidden">
-            <div className="relative flex items-start justify-between gap-6">
-              <div className="min-w-0">
+            <div className="relative flex items-start gap-5">
+              <span key={isOcc ? (OCCASION_IMG[occ.id] ?? COLLECTION_IMG[occ.open[0]]) : COLLECTION_IMG[cat.id]} className="photo shrink-0 w-[132px] h-[100px] rounded-2xl hidden xl:block" style={{ animation: 'fadeUp .45s both', boxShadow: '0 0 0 1px rgba(192,138,102,.25), 0 14px 26px -16px rgba(67,42,29,.5)' }}><Photo k={isOcc ? (OCCASION_IMG[occ.id] ?? COLLECTION_IMG[occ.open[0]]) : COLLECTION_IMG[cat.id]} /></span>
+                  <div className="min-w-0 flex-1">
                 <p className="eyebrow">{isOcc ? `${occ.group} · ${occ.home.length + occ.biz.length} ideas` : `${pad(cat.id)} · ${cat[catSeg].length} ${catSeg === 'b2c' ? 'for home' : 'for business'}`}</p>
                 <h3 className="font-display text-[2rem] text-cocoa-800 leading-tight mt-1">{isOcc ? occ.name : cat.title}</h3>
                 <p className="text-[14.5px] text-cocoa-500 font-light mt-2 max-w-xl leading-relaxed">{isOcc ? occ.blurb : cat.blurb}</p>
               </div>
-              <button type="button" className="btn btn-ghost !py-2.5 !px-4 !text-[11px] shrink-0"
+              <button type="button" className="btn btn-ghost !py-2.5 !px-4 !text-[11px] shrink-0 ml-auto"
                 onClick={() => (isOcc ? openDrawer(occ.open[0], occ.open[1]) : openDrawer(cat.id, catSeg))}>
                 View all <Icon name="arrow-right" className="w-3.5 h-3.5" />
               </button>

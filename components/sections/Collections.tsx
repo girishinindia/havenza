@@ -6,6 +6,8 @@ import { CATEGORIES, FILTERS, TOTAL, pad, type Segment } from '@/lib/data';
 const WORDS = ['Zero','One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten','Eleven','Twelve','Thirteen','Fourteen','Fifteen','Sixteen','Seventeen','Eighteen','Nineteen','Twenty'];
 const COUNT_WORD = WORDS[CATEGORIES.length] ?? String(CATEGORIES.length);
 import { d } from '@/lib/ui';
+import Photo from '@/components/ui/Photo';
+import { COLLECTION_IMG } from '@/lib/images';
 import Icon from '@/components/ui/Icon';
 import CardGL from '@/components/gl/CardGL';
 import { useUI } from '@/components/ui/UIProvider';
@@ -83,11 +85,12 @@ export default function Collections() {
                 role="button" tabIndex={0} aria-label={`Open ${c.title}`} onClick={() => openDrawer(c.id)}
                 onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openDrawer(c.id); } }}>
                 <CardGL />
-                <div className="flex items-start justify-between">
-                  <span className="icon-badge"><Icon name={c.icon} /></span>
-                  <span className="font-display text-[2.6rem] leading-none text-rose-300/80 group-hover:text-rose-400 transition">{pad(c.id)}</span>
+                <div className="photo card-top aspect-[4/3]">
+                  <Photo k={COLLECTION_IMG[c.id]} alt={c.title} />
+                  <span className="photo-over top-4 right-4 font-display text-[1.6rem] leading-none text-ivory px-3 py-1.5 rounded-full" style={{ background: 'rgba(34,21,14,.35)', backdropFilter: 'blur(6px)' }}>{pad(c.id)}</span>
                 </div>
-                <h3 className="font-display text-[1.75rem] leading-tight text-cocoa-800 mt-7">{c.title}</h3>
+                <span className="icon-badge badge-lift">{<Icon name={c.icon} />}</span>
+                <h3 className="font-display text-[1.75rem] leading-tight text-cocoa-800 mt-5">{c.title}</h3>
                 <p className="mt-3 text-[15px] text-cocoa-500 font-light leading-relaxed">{c.blurb}</p>
                 <div className="mt-6 flex flex-wrap gap-2">{preview.map((p) => <span key={p} className="chip">{p}</span>)}</div>
                 <div className="mt-auto pt-7">
